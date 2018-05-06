@@ -96,7 +96,7 @@ namespace CustomerManagementViettelApp
             }
             catch (Exception)
             {
-                MessageBox.Show("Tồn tại Máy tính trong danh mục này");
+                MessageBox.Show("Không thể xóa");
             }
         }
 
@@ -107,7 +107,7 @@ namespace CustomerManagementViettelApp
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            bds.DataSource = db.DanhMucs.Where(x => x.MaDanhMuc.ToString().Contains(txtId.Text) || x.TenDanhMuc.Contains(txtTen.Text));
+            bds.DataSource = db.DanhMucs.Where(x => x.MaDanhMuc.ToString().Contains(txtTimKiem.Text) || x.TenDanhMuc.Contains(txtTimKiem.Text)).ToList();
         }
     }
 }

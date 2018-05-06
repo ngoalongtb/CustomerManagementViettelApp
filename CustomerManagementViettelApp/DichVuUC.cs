@@ -25,22 +25,45 @@ namespace CustomerManagementViettelApp
             LoadDtgv();
             dtgv.DataSource = bds;
             ChangHeader();
+            LoadMore();
+            HideColumn();
             LoadDataBinding();
         }
         public void LoadDtgv()
         {
-            bds.DataSource = db.DichVus.Select(x => new { x.MaDichVu, x.TenDichVu, x.Gia, x.KhuyenMai, x.DanhMuc.MaDanhMuc }).ToList();
+            bds.DataSource = db.DichVus.Select(x => new { x.MaDichVu, x.TenDichVu, x.Gia, x.KhuyenMai, x.MaDanhMuc, x.DanhMuc.TenDanhMuc, x.MoTa, x.NgayTao }).ToList();
         }
         public void ChangHeader()
         {
-            //dtgv.Columns["MaDanhMuc"].HeaderText = "Mã danh mục";
-            //dtgv.Columns["TenDanhMuc"].HeaderText = "Tên danh mục";
-            //dtgv.Columns["NgayTao"].HeaderText = "Ngày tạo";
+            dtgv.Columns["MaDichVu"].HeaderText = "Mã DV";
+            dtgv.Columns["TenDichVu"].HeaderText = "Tên DV";
+            dtgv.Columns["Gia"].HeaderText = "Giá";
+            dtgv.Columns["KhuyenMai"].HeaderText = "Khuyến mại";
+            dtgv.Columns["MaDanhMuc"].HeaderText = "Mã DM";
+            dtgv.Columns["TenDanhMuc"].HeaderText = "Tên DM";
+            dtgv.Columns["NgayTao"].HeaderText = "Ngày tạo";
+            dtgv.Columns["MoTa"].HeaderText = "Mô tả";
         }
         public void LoadDataBinding()
         {
-            //txtId.DataBindings.Add("Text", dtgv.DataSource, "MaDanhMuc", true, DataSourceUpdateMode.Never);
-            //txtTen.DataBindings.Add("Text", dtgv.DataSource, "TenDanhMuc", true, DataSourceUpdateMode.Never);
+            txtMaDichVu.DataBindings.Add("Text", dtgv.DataSource, "MaDichVu", true, DataSourceUpdateMode.Never);
+            txtTenDichVu.DataBindings.Add("Text", dtgv.DataSource, "TenDichVu", true, DataSourceUpdateMode.Never);
+            txtGia.DataBindings.Add("Text", dtgv.DataSource, "Gia", true, DataSourceUpdateMode.Never);
+            txtKhuyenMai.DataBindings.Add("Text", dtgv.DataSource, "KhuyenMai", true, DataSourceUpdateMode.Never);
+            txtMoTa.DataBindings.Add("Text", dtgv.DataSource, "MoTa", true, DataSourceUpdateMode.Never);
+            cbxDanhMuc.DataBindings.Add("SelectedValue", dtgv.DataSource, "MaDanhMuc", true, DataSourceUpdateMode.Never);
+        }
+
+        public void LoadMore()
+        {
+            cbxDanhMuc.DataSource = db.DanhMucs.ToList();
+            cbxDanhMuc.DisplayMember = "TenDanhMuc";
+            cbxDanhMuc.ValueMember = "MaDanhMuc";
+        }
+
+        public void HideColumn()
+        {
+            dtgv.Columns["MoTa"].Visible = false;
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -48,12 +71,17 @@ namespace CustomerManagementViettelApp
             //if (!MyRegular.CheckRequired(txtTen.Text, "Bắt buộc nhập vào tên danh mục"))
             //    return;
             //else
-            DanhMuc category = new DanhMuc();
-            category.NgayTao = DateTime.Now;
-            category.TenDanhMuc = txtTen.Text;
+            DichVu service = new DichVu();
+            service.NgayTao = DateTime.Now;
+            service.Gia = double.Parse(txtGia.Text);
+            service.KhuyenMai = double.Parse(txtKhuyenMai.Text);
+            service.MoTa = txtMoTa.Text;
+            service.TenDichVu = txtTenDichVu.Text;
+            service.MaDanhMuc = (int)cbxDanhMuc.SelectedValue;
+
             try
             {
-                db.DanhMucs.Add(category);
+                db.DichVus.Add(service);
                 db.SaveChanges();
                 MessageBox.Show("Thêm mới thành công");
                 LoadDtgv();
@@ -66,10 +94,14 @@ namespace CustomerManagementViettelApp
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            DichVu service = db.DichVus.Find(txtCmtnd.Text);
-            //category.TenDanhMuc = txtTen.Text;
             try
             {
+                DichVu service = db.DichVus.Find(int.Parse(txtMaDichVu.Text));
+                service.Gia = double.Parse(txtGia.Text);
+                service.KhuyenMai = double.Parse(txtKhuyenMai.Text);
+                service.MoTa = txtMoTa.Text;
+                service.TenDichVu = txtTenDichVu.Text;
+                service.MaDanhMuc = (int)cbxDanhMuc.SelectedValue;
                 db.SaveChanges();
                 MessageBox.Show("Cập nhật thành công");
                 LoadDtgv();
@@ -82,10 +114,9 @@ namespace CustomerManagementViettelApp
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            DichVu service = db.DichVus.Find(txtCmtnd.Text);
-
             try
             {
+                DichVu service = db.DichVus.Find(int.Parse(txtMaDichVu.Text));
                 db.DichVus.Remove(service);
                 db.SaveChanges();
                 MessageBox.Show("Xóa thành công");
@@ -104,7 +135,7 @@ namespace CustomerManagementViettelApp
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            //bds.DataSource = db.DanhMucs.Where(x => x.MaDanhMuc.ToString().Contains(txtId.Text) || x.TenDanhMuc.Contains(txtTen.Text));
+            bds.DataSource = db.DichVus.Select(x => new { x.MaDichVu, x.TenDichVu, x.Gia, x.KhuyenMai, x.MaDanhMuc, x.DanhMuc.TenDanhMuc, x.MoTa, x.NgayTao }).Where(x => x.MaDichVu.ToString().Contains(txtTimKiem.Text) || x.TenDichVu.Contains(txtTimKiem.Text)).ToList();
         }
 
         

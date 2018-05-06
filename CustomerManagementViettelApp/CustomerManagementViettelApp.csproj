@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\Commons.cs" />
     <Compile Include="App_Code\Session.cs" />
     <Compile Include="DangKyUC.cs">
       <SubType>UserControl</SubType>

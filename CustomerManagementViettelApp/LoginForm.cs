@@ -76,7 +76,7 @@ namespace CustomerManagementViettelApp
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            try
+            //try
             {
                 var loginQuery = db.TaiKhoans.Where(x => x.TenTaiKhoan == txtUserName.Text && x.MatKhau == txtPassword.Text);
                 if (loginQuery.Count() > 0)
@@ -93,10 +93,10 @@ namespace CustomerManagementViettelApp
                     MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác. Vui lòng kiểm tra lại!!!");
                 }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Có lỗi xảy ra. liên hệ admin");
-            }
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Có lỗi xảy ra. liên hệ admin");
+            //}
         }
     }
 }

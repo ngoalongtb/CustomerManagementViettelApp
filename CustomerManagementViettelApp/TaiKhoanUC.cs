@@ -25,77 +25,96 @@ namespace CustomerManagementViettelApp
             LoadDtgv();
             dtgv.DataSource = bds;
             ChangHeader();
+            LoadMore();
             LoadDataBinding();
         }
 
         public void LoadDtgv()
         {
-            bds.DataSource = db.DanhMucs.Select(x => new { x.MaDanhMuc, x.TenDanhMuc, x.NgayTao }).ToList();
+            bds.DataSource = db.TaiKhoans.Select(x => new { x.TenTaiKhoan, x.TenHienThi, x.MaLoaiTaiKhoan, x.LoaiTaiKhoan.TenLoaiTaiKhoan, x.NgayTao }).ToList();
         }
         public void ChangHeader()
         {
-            //dtgv.Columns["MaDanhMuc"].HeaderText = "Mã danh mục";
-            //dtgv.Columns["TenDanhMuc"].HeaderText = "Tên danh mục";
-            //dtgv.Columns["NgayTao"].HeaderText = "Ngày tạo";
+            dtgv.Columns["TenTaiKhoan"].HeaderText = "Tên tài khoản";
+            dtgv.Columns["TenHienThi"].HeaderText = "Tên hiển thị";
+            dtgv.Columns["MaLoaiTaiKhoan"].HeaderText = "Mã loại tài khoản";
+            dtgv.Columns["NgayTao"].HeaderText = "Ngày tạo";
+            dtgv.Columns["TenLoaiTaiKhoan"].HeaderText = "Loại tài khoản";
         }
         public void LoadDataBinding()
         {
-            //txtId.DataBindings.Add("Text", dtgv.DataSource, "MaDanhMuc", true, DataSourceUpdateMode.Never);
-            //txtTen.DataBindings.Add("Text", dtgv.DataSource, "TenDanhMuc", true, DataSourceUpdateMode.Never);
+            txtUsername.DataBindings.Add("Text", dtgv.DataSource, "TenTaiKhoan", true, DataSourceUpdateMode.Never);
+            txtDisplayName.DataBindings.Add("Text", dtgv.DataSource, "TenHienThi", true, DataSourceUpdateMode.Never);
+            cbxType.DataBindings.Add("SelectedValue", dtgv.DataSource, "MaLoaiTaiKhoan", true, DataSourceUpdateMode.Never);
+            cbxType.SelectedValue = "";
         }
 
+        public void LoadMore()
+        {
+            cbxType.DataSource = db.LoaiTaiKhoans.ToList();
+            cbxType.DisplayMember = "TenLoaiTaiKhoan";
+            cbxType.ValueMember = "MaLoaiTaiKhoan";
+        }
+        private void txtUsername_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
         private void btnThem_Click(object sender, EventArgs e)
         {
             //if (!MyRegular.CheckRequired(txtTen.Text, "Bắt buộc nhập vào tên danh mục"))
             //    return;
             //else
-            //DanhMuc category = new DanhMuc();
-            //category.NgayTao = DateTime.Now;
-            ////category.TenDanhMuc = txtTen.Text;
-            //try
-            //{
-            //    db.DanhMucs.Add(category);
-            //    db.SaveChanges();
-            //    MessageBox.Show("Thêm mới thành công");
-            //    LoadDtgv();
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Thêm mới không thành công. Vui lòng kiểm tra lại");
-            //}
+            TaiKhoan account = new TaiKhoan();
+            account.TenTaiKhoan = txtUsername.Text;
+            account.TenHienThi = txtDisplayName.Text;
+            account.NgayTao = DateTime.Now;
+            account.MatKhau = "12345";
+            account.MaLoaiTaiKhoan = (int)cbxType.SelectedValue;
+            //category.TenDanhMuc = txtTen.Text;
+            try
+            {
+                db.TaiKhoans.Add(account);
+                db.SaveChanges();
+                MessageBox.Show("Thêm mới thành công. Mật khẩu mặc định là '12345'");
+                LoadDtgv();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Thêm mới không thành công. Vui lòng kiểm tra lại");
+            }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            //DanhMuc category = db.DanhMucs.Find(txtId.Text);
-            //category.TenDanhMuc = txtTen.Text;
-            //try
-            //{
-            //    db.SaveChanges();
-            //    MessageBox.Show("Cập nhật thành công");
-            //    LoadDtgv();
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Cập nhật không thành công. Vui lòng kiểm tra lại");
-            //}
+            TaiKhoan account = db.TaiKhoans.Find(txtUsername.Text);
+            account.TenHienThi = txtDisplayName.Text;
+            account.MaLoaiTaiKhoan = (int)cbxType.SelectedValue;
+            try
+            {
+                db.SaveChanges();
+                MessageBox.Show("Cập nhật thành công");
+                LoadDtgv();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Cập nhật không thành công. Vui lòng kiểm tra lại");
+            }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            //DanhMuc category = db.DanhMucs.Find(txtId.Text);
-
-            //try
-            //{
-            //    db.DanhMucs.Remove(category);
-            //    db.SaveChanges();
-            //    MessageBox.Show("Xóa thành công");
-            //    LoadDtgv();
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Tồn tại Máy tính trong danh mục này");
-            //}
+            TaiKhoan account = db.TaiKhoans.Find(txtUsername.Text);
+            try
+            {
+                db.TaiKhoans.Remove(account);
+                db.SaveChanges();
+                MessageBox.Show("Xóa thành công");
+                LoadDtgv();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Không thể xóa! Có lỗi xảy ra");
+            }
         }
 
         private void btnXem_Click(object sender, EventArgs e)
@@ -105,7 +124,8 @@ namespace CustomerManagementViettelApp
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            //bds.DataSource = db.DanhMucs.Where(x => x.MaDanhMuc.ToString().Contains(txtId.Text) || x.TenDanhMuc.Contains(txtTen.Text));
+            bds.DataSource = db.TaiKhoans.Where(x => x.TenHienThi.ToString().Contains(txtTimKiem.Text) 
+            || x.TenTaiKhoan.Contains(txtTimKiem.Text) || x.LoaiTaiKhoan.TenLoaiTaiKhoan.Contains(txtTimKiem.Text)).ToList();
         }
 
         

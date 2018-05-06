@@ -38,13 +38,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.pnAdmin = new System.Windows.Forms.Panel();
             this.btnThongKe = new System.Windows.Forms.Button();
+            this.btnDichVu = new System.Windows.Forms.Button();
+            this.btnDanhMuc = new System.Windows.Forms.Button();
+            this.btnLoaiTaiKhoan = new System.Windows.Forms.Button();
             this.btnTaiKhoan = new System.Windows.Forms.Button();
             this.lblChayChu = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDangKy = new System.Windows.Forms.Button();
-            this.btnDichVu = new System.Windows.Forms.Button();
-            this.btnDanhMuc = new System.Windows.Forms.Button();
-            this.btnLoaiTaiKhoan = new System.Windows.Forms.Button();
             this.btnThongTinCaNhan = new System.Windows.Forms.Button();
             this.btnDangXuat = new System.Windows.Forms.Button();
             this.btnMayTinh = new System.Windows.Forms.Button();
@@ -93,9 +93,9 @@
             this.label3.ForeColor = System.Drawing.Color.Aqua;
             this.label3.Location = new System.Drawing.Point(111, 233);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 23);
+            this.label3.Size = new System.Drawing.Size(127, 23);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Thành Đạt";
+            this.label3.Text = "Hoàng Tiến Đạt";
             // 
             // label2
             // 
@@ -137,13 +137,55 @@
             this.btnThongKe.FlatAppearance.BorderSize = 0;
             this.btnThongKe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThongKe.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThongKe.Location = new System.Drawing.Point(27, 73);
+            this.btnThongKe.Location = new System.Drawing.Point(27, 241);
             this.btnThongKe.Name = "btnThongKe";
             this.btnThongKe.Size = new System.Drawing.Size(155, 42);
             this.btnThongKe.TabIndex = 0;
             this.btnThongKe.Text = "Thống kê";
             this.btnThongKe.UseVisualStyleBackColor = false;
             this.btnThongKe.Click += new System.EventHandler(this.btnThongKe_Click);
+            // 
+            // btnDichVu
+            // 
+            this.btnDichVu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
+            this.btnDichVu.FlatAppearance.BorderSize = 0;
+            this.btnDichVu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDichVu.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDichVu.Location = new System.Drawing.Point(27, 73);
+            this.btnDichVu.Name = "btnDichVu";
+            this.btnDichVu.Size = new System.Drawing.Size(155, 42);
+            this.btnDichVu.TabIndex = 0;
+            this.btnDichVu.Text = "Dịch vụ";
+            this.btnDichVu.UseVisualStyleBackColor = false;
+            this.btnDichVu.Click += new System.EventHandler(this.btnDichVu_Click);
+            // 
+            // btnDanhMuc
+            // 
+            this.btnDanhMuc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
+            this.btnDanhMuc.FlatAppearance.BorderSize = 0;
+            this.btnDanhMuc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDanhMuc.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDanhMuc.Location = new System.Drawing.Point(27, 17);
+            this.btnDanhMuc.Name = "btnDanhMuc";
+            this.btnDanhMuc.Size = new System.Drawing.Size(155, 42);
+            this.btnDanhMuc.TabIndex = 0;
+            this.btnDanhMuc.Text = "Danh mục";
+            this.btnDanhMuc.UseVisualStyleBackColor = false;
+            this.btnDanhMuc.Click += new System.EventHandler(this.btnDanhMuc_Click);
+            // 
+            // btnLoaiTaiKhoan
+            // 
+            this.btnLoaiTaiKhoan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
+            this.btnLoaiTaiKhoan.FlatAppearance.BorderSize = 0;
+            this.btnLoaiTaiKhoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoaiTaiKhoan.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoaiTaiKhoan.Location = new System.Drawing.Point(26, 185);
+            this.btnLoaiTaiKhoan.Name = "btnLoaiTaiKhoan";
+            this.btnLoaiTaiKhoan.Size = new System.Drawing.Size(155, 42);
+            this.btnLoaiTaiKhoan.TabIndex = 0;
+            this.btnLoaiTaiKhoan.Text = "Loại tài khoản";
+            this.btnLoaiTaiKhoan.UseVisualStyleBackColor = false;
+            this.btnLoaiTaiKhoan.Click += new System.EventHandler(this.btnLoaiTaiKhoan_Click);
             // 
             // btnTaiKhoan
             // 
@@ -192,48 +234,6 @@
             this.btnDangKy.Text = "Đăng ký";
             this.btnDangKy.UseVisualStyleBackColor = false;
             this.btnDangKy.Click += new System.EventHandler(this.btnDangKy_Click);
-            // 
-            // btnDichVu
-            // 
-            this.btnDichVu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
-            this.btnDichVu.FlatAppearance.BorderSize = 0;
-            this.btnDichVu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDichVu.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDichVu.Location = new System.Drawing.Point(27, 241);
-            this.btnDichVu.Name = "btnDichVu";
-            this.btnDichVu.Size = new System.Drawing.Size(155, 42);
-            this.btnDichVu.TabIndex = 0;
-            this.btnDichVu.Text = "Dịch vụ";
-            this.btnDichVu.UseVisualStyleBackColor = false;
-            this.btnDichVu.Click += new System.EventHandler(this.btnDichVu_Click);
-            // 
-            // btnDanhMuc
-            // 
-            this.btnDanhMuc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
-            this.btnDanhMuc.FlatAppearance.BorderSize = 0;
-            this.btnDanhMuc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDanhMuc.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDanhMuc.Location = new System.Drawing.Point(27, 17);
-            this.btnDanhMuc.Name = "btnDanhMuc";
-            this.btnDanhMuc.Size = new System.Drawing.Size(155, 42);
-            this.btnDanhMuc.TabIndex = 0;
-            this.btnDanhMuc.Text = "Danh mục";
-            this.btnDanhMuc.UseVisualStyleBackColor = false;
-            this.btnDanhMuc.Click += new System.EventHandler(this.btnDanhMuc_Click);
-            // 
-            // btnLoaiTaiKhoan
-            // 
-            this.btnLoaiTaiKhoan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
-            this.btnLoaiTaiKhoan.FlatAppearance.BorderSize = 0;
-            this.btnLoaiTaiKhoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoaiTaiKhoan.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoaiTaiKhoan.Location = new System.Drawing.Point(26, 185);
-            this.btnLoaiTaiKhoan.Name = "btnLoaiTaiKhoan";
-            this.btnLoaiTaiKhoan.Size = new System.Drawing.Size(155, 42);
-            this.btnLoaiTaiKhoan.TabIndex = 0;
-            this.btnLoaiTaiKhoan.Text = "Loại tài khoản";
-            this.btnLoaiTaiKhoan.UseVisualStyleBackColor = false;
-            this.btnLoaiTaiKhoan.Click += new System.EventHandler(this.btnLoaiTaiKhoan_Click);
             // 
             // btnThongTinCaNhan
             // 
@@ -399,10 +399,11 @@
             this.Font = new System.Drawing.Font("Calibri", 12F);
             this.ForeColor = System.Drawing.Color.Silver;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ManagerForm";
+            this.Load += new System.EventHandler(this.ManagerForm_Load);
             this.pnAdmin.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

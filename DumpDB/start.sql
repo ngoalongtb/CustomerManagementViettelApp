@@ -99,3 +99,8 @@ ALTER TABLE LichSuDangKy
 ADD FOREIGN KEY(TenTaiKhoan) REFERENCES TaiKhoan(TenTaiKhoan)
 on delete cascade 
 on update cascade
+
+
+select * from TaiKhoan
+
+select * from ThongTinTaiKhoan

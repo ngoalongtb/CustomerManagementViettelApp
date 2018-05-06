@@ -77,6 +77,14 @@ namespace CustomerManagementViettelApp
             this.Close();
         }
 
+        private void ManagerForm_Load(object sender, EventArgs e)
+        {
+            if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan != Commons.ADMIN)
+            {
+                pnAdmin.Visible = false;
+            }
+        }
+
         private void btnLoaiTaiKhoan_Click(object sender, EventArgs e)
         {
             LoaiTaiKhoanUC f = new LoaiTaiKhoanUC();
@@ -132,6 +140,8 @@ namespace CustomerManagementViettelApp
             pnContent.Controls.Add(f);
             f.Show();
         }
+
+        
 
         private void btnThongTinCaNhan_Click(object sender, EventArgs e)
         {
