@@ -95,7 +95,7 @@ namespace CustomerManagementViettelApp
             }
             catch (Exception)
             {
-                MessageBox.Show("Kết nối không thành công.\r\n Kiểm tra lại connection string hoặc liên hệ admin");
+                MessageBox.Show("Có lỗi xảy ra. liên hệ admin");
             }
         }
     }
