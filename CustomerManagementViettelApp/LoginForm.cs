@@ -1,4 +1,5 @@
-﻿using CustomerManagementViettelApp.EF;
+﻿using CustomerManagementViettelApp.App_Code;
+using CustomerManagementViettelApp.EF;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -81,7 +82,8 @@ namespace CustomerManagementViettelApp
                 if (loginQuery.Count() > 0)
                 {
                     this.Hide();
-                    TaiKhoan acc = loginQuery.First();
+                    TaiKhoan loginAccount = loginQuery.First();
+                    Session.LoginAccount = loginAccount;
                     ManagerForm f = new ManagerForm();
                     f.ShowDialog();
                     this.Show();

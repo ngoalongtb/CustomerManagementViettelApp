@@ -39,6 +39,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtHoTen = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtSoDienThoai = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtHinhAnh = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dtpkNgaySinh = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // btnUpdateInfo
@@ -48,18 +58,19 @@
             this.btnUpdateInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdateInfo.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateInfo.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateInfo.Location = new System.Drawing.Point(83, 305);
+            this.btnUpdateInfo.Location = new System.Drawing.Point(247, 464);
             this.btnUpdateInfo.Name = "btnUpdateInfo";
             this.btnUpdateInfo.Size = new System.Drawing.Size(283, 42);
             this.btnUpdateInfo.TabIndex = 39;
             this.btnUpdateInfo.Text = "Cập nhật thông tin";
             this.btnUpdateInfo.UseVisualStyleBackColor = false;
+            this.btnUpdateInfo.Click += new System.EventHandler(this.btnUpdateInfo_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(79, 244);
+            this.label5.Location = new System.Drawing.Point(73, 397);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(119, 19);
             this.label5.TabIndex = 42;
@@ -69,7 +80,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(79, 199);
+            this.label4.Location = new System.Drawing.Point(73, 352);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 19);
             this.label4.TabIndex = 43;
@@ -77,7 +88,7 @@
             // 
             // txtReNewPass
             // 
-            this.txtReNewPass.Location = new System.Drawing.Point(216, 241);
+            this.txtReNewPass.Location = new System.Drawing.Point(210, 394);
             this.txtReNewPass.Name = "txtReNewPass";
             this.txtReNewPass.Size = new System.Drawing.Size(150, 27);
             this.txtReNewPass.TabIndex = 38;
@@ -87,7 +98,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(78, 157);
+            this.label3.Location = new System.Drawing.Point(72, 310);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 19);
             this.label3.TabIndex = 44;
@@ -95,7 +106,7 @@
             // 
             // txtNewPass
             // 
-            this.txtNewPass.Location = new System.Drawing.Point(216, 196);
+            this.txtNewPass.Location = new System.Drawing.Point(210, 349);
             this.txtNewPass.Name = "txtNewPass";
             this.txtNewPass.Size = new System.Drawing.Size(150, 27);
             this.txtNewPass.TabIndex = 37;
@@ -105,7 +116,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(78, 105);
+            this.label2.Location = new System.Drawing.Point(72, 258);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 19);
             this.label2.TabIndex = 45;
@@ -113,7 +124,7 @@
             // 
             // txtDisplayName
             // 
-            this.txtDisplayName.Location = new System.Drawing.Point(215, 154);
+            this.txtDisplayName.Location = new System.Drawing.Point(209, 307);
             this.txtDisplayName.Name = "txtDisplayName";
             this.txtDisplayName.Size = new System.Drawing.Size(150, 27);
             this.txtDisplayName.TabIndex = 36;
@@ -122,7 +133,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(78, 58);
+            this.label1.Location = new System.Drawing.Point(72, 211);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 19);
             this.label1.TabIndex = 41;
@@ -130,32 +141,129 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(215, 58);
+            this.txtUsername.Location = new System.Drawing.Point(209, 211);
             this.txtUsername.Name = "txtUsername";
+            this.txtUsername.ReadOnly = true;
             this.txtUsername.Size = new System.Drawing.Size(150, 27);
             this.txtUsername.TabIndex = 40;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(215, 102);
+            this.txtPassword.Location = new System.Drawing.Point(209, 255);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(150, 27);
             this.txtPassword.TabIndex = 35;
             this.txtPassword.UseSystemPasswordChar = true;
+            // 
+            // txtHoTen
+            // 
+            this.txtHoTen.Location = new System.Drawing.Point(567, 214);
+            this.txtHoTen.Name = "txtHoTen";
+            this.txtHoTen.Size = new System.Drawing.Size(150, 27);
+            this.txtHoTen.TabIndex = 40;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(430, 214);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 19);
+            this.label6.TabIndex = 41;
+            this.label6.Text = "Họ Tên:";
+            // 
+            // txtSoDienThoai
+            // 
+            this.txtSoDienThoai.Location = new System.Drawing.Point(567, 310);
+            this.txtSoDienThoai.Name = "txtSoDienThoai";
+            this.txtSoDienThoai.Size = new System.Drawing.Size(150, 27);
+            this.txtSoDienThoai.TabIndex = 36;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(430, 261);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 19);
+            this.label7.TabIndex = 45;
+            this.label7.Text = "Ngày sinh:";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(568, 352);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(150, 27);
+            this.txtEmail.TabIndex = 37;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(430, 313);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(98, 19);
+            this.label8.TabIndex = 44;
+            this.label8.Text = "Số điện thoại:";
+            // 
+            // txtHinhAnh
+            // 
+            this.txtHinhAnh.Location = new System.Drawing.Point(568, 397);
+            this.txtHinhAnh.Name = "txtHinhAnh";
+            this.txtHinhAnh.Size = new System.Drawing.Size(150, 27);
+            this.txtHinhAnh.TabIndex = 38;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(431, 355);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(49, 19);
+            this.label9.TabIndex = 43;
+            this.label9.Text = "Email:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(431, 400);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(71, 19);
+            this.label10.TabIndex = 42;
+            this.label10.Text = "Hình ảnh:";
+            // 
+            // dtpkNgaySinh
+            // 
+            this.dtpkNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpkNgaySinh.Location = new System.Drawing.Point(567, 255);
+            this.dtpkNgaySinh.Name = "dtpkNgaySinh";
+            this.dtpkNgaySinh.Size = new System.Drawing.Size(151, 27);
+            this.dtpkNgaySinh.TabIndex = 46;
             // 
             // ThongTinCaNhanUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.Controls.Add(this.dtpkNgaySinh);
             this.Controls.Add(this.btnUpdateInfo);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtHinhAnh);
             this.Controls.Add(this.txtReNewPass);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtNewPass);
+            this.Controls.Add(this.txtSoDienThoai);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtDisplayName);
+            this.Controls.Add(this.txtHoTen);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.txtPassword);
@@ -181,5 +289,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtHoTen;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtSoDienThoai;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtHinhAnh;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DateTimePicker dtpkNgaySinh;
     }
 }
