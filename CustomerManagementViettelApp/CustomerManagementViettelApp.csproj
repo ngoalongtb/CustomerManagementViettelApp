@@ -59,6 +59,12 @@
   <ItemGroup>
     <Compile Include="App_Code\Commons.cs" />
     <Compile Include="App_Code\Session.cs" />
+    <Compile Include="Components\DichVuComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DichVuComponent.Designer.cs">
+      <DependentUpon>DichVuComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="DangKyUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     <Compile Include="ThongTinCaNhanUC.Designer.cs">
       <DependentUpon>ThongTinCaNhanUC.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Components\DichVuComponent.resx">
+      <DependentUpon>DichVuComponent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DangKyUC.resx">
       <DependentUpon>DangKyUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,6 +228,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Assets\Images\SMS_0.png" />
     <Content Include="Assets\Images\viettel-icon.png" />
     <Content Include="EF\AppDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

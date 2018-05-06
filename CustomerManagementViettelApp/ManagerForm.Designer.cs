@@ -314,7 +314,7 @@
             this.lbl.TabIndex = 5;
             this.lbl.Text = "Quản lý khách hàng Viettel";
             this.lbl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbl_MouseDown);
-            this.lbl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbl_MouseDown);
+            this.lbl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pn_MouseMove);
             this.lbl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lbl_MouseUp);
             // 
             // btnMinimum
