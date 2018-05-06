@@ -1,0 +1,531 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CustomerManagementAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DanhMuc">
+          <Key>
+            <PropertyRef Name="MaDanhMuc" />
+          </Key>
+          <Property Name="MaDanhMuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDanhMuc" Type="nvarchar" MaxLength="255" />
+          <Property Name="NgayTao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DichVu">
+          <Key>
+            <PropertyRef Name="MaDichVu" />
+          </Key>
+          <Property Name="MaDichVu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenDichVu" Type="nvarchar" MaxLength="255" />
+          <Property Name="Gia" Type="float" />
+          <Property Name="KhuyenMai" Type="float" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="255" />
+          <Property Name="MaDanhMuc" Type="int" />
+          <Property Name="NgayTao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LichSuDangKy">
+          <Key>
+            <PropertyRef Name="MaDichVu" />
+            <PropertyRef Name="TenTaiKhoan" />
+          </Key>
+          <Property Name="MaDichVu" Type="int" Nullable="false" />
+          <Property Name="Gia" Type="float" />
+          <Property Name="TenTaiKhoan" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="NgayTao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LoaiTaiKhoan">
+          <Key>
+            <PropertyRef Name="MaLoaiTaiKhoan" />
+          </Key>
+          <Property Name="MaLoaiTaiKhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLoaiTaiKhoan" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="TenTaiKhoan" />
+          </Key>
+          <Property Name="TenTaiKhoan" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="MatKhau" Type="varchar" MaxLength="255" />
+          <Property Name="TenHienThi" Type="nvarchar" MaxLength="255" />
+          <Property Name="MaLoaiTaiKhoan" Type="int" />
+          <Property Name="NgayTao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TaiKhoanDichVu">
+          <Key>
+            <PropertyRef Name="MaDichVu" />
+            <PropertyRef Name="TenTaiKhoan" />
+          </Key>
+          <Property Name="MaDichVu" Type="int" Nullable="false" />
+          <Property Name="TenTaiKhoan" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="NgayTao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ThongTinTaiKhoan">
+          <Key>
+            <PropertyRef Name="TenTaiKhoan" />
+          </Key>
+          <Property Name="TenTaiKhoan" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="255" />
+          <Property Name="NgaySinh" Type="datetime" />
+          <Property Name="SoDienThoai" Type="nvarchar" MaxLength="20" />
+          <Property Name="HinhAnh" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__DichVu__MaDanhMu__1DE57479">
+          <End Role="DanhMuc" Type="Self.DanhMuc" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DichVu" Type="Self.DichVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMuc">
+              <PropertyRef Name="MaDanhMuc" />
+            </Principal>
+            <Dependent Role="DichVu">
+              <PropertyRef Name="MaDanhMuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LichSuDan__MaDic__20C1E124">
+          <End Role="DichVu" Type="Self.DichVu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LichSuDangKy" Type="Self.LichSuDangKy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DichVu">
+              <PropertyRef Name="MaDichVu" />
+            </Principal>
+            <Dependent Role="LichSuDangKy">
+              <PropertyRef Name="MaDichVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LichSuDan__TenTa__21B6055D">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LichSuDangKy" Type="Self.LichSuDangKy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="TenTaiKhoan" />
+            </Principal>
+            <Dependent Role="LichSuDangKy">
+              <PropertyRef Name="TenTaiKhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TaiKhoan__MaLoai__1BFD2C07">
+          <End Role="LoaiTaiKhoan" Type="Self.LoaiTaiKhoan" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiTaiKhoan">
+              <PropertyRef Name="MaLoaiTaiKhoan" />
+            </Principal>
+            <Dependent Role="TaiKhoan">
+              <PropertyRef Name="MaLoaiTaiKhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TaiKhoanD__MaDic__1ED998B2">
+          <End Role="DichVu" Type="Self.DichVu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TaiKhoanDichVu" Type="Self.TaiKhoanDichVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DichVu">
+              <PropertyRef Name="MaDichVu" />
+            </Principal>
+            <Dependent Role="TaiKhoanDichVu">
+              <PropertyRef Name="MaDichVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TaiKhoanD__TenTa__1FCDBCEB">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TaiKhoanDichVu" Type="Self.TaiKhoanDichVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="TenTaiKhoan" />
+            </Principal>
+            <Dependent Role="TaiKhoanDichVu">
+              <PropertyRef Name="TenTaiKhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ThongTinT__TenTa__1CF15040">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ThongTinTaiKhoan" Type="Self.ThongTinTaiKhoan" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="TenTaiKhoan" />
+            </Principal>
+            <Dependent Role="ThongTinTaiKhoan">
+              <PropertyRef Name="TenTaiKhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CustomerManagementAppModelStoreContainer">
+          <EntitySet Name="DanhMuc" EntityType="Self.DanhMuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DichVu" EntityType="Self.DichVu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LichSuDangKy" EntityType="Self.LichSuDangKy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiTaiKhoan" EntityType="Self.LoaiTaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaiKhoanDichVu" EntityType="Self.TaiKhoanDichVu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongTinTaiKhoan" EntityType="Self.ThongTinTaiKhoan" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__DichVu__MaDanhMu__1DE57479" Association="Self.FK__DichVu__MaDanhMu__1DE57479">
+            <End Role="DanhMuc" EntitySet="DanhMuc" />
+            <End Role="DichVu" EntitySet="DichVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LichSuDan__MaDic__20C1E124" Association="Self.FK__LichSuDan__MaDic__20C1E124">
+            <End Role="DichVu" EntitySet="DichVu" />
+            <End Role="LichSuDangKy" EntitySet="LichSuDangKy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LichSuDan__TenTa__21B6055D" Association="Self.FK__LichSuDan__TenTa__21B6055D">
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+            <End Role="LichSuDangKy" EntitySet="LichSuDangKy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TaiKhoan__MaLoai__1BFD2C07" Association="Self.FK__TaiKhoan__MaLoai__1BFD2C07">
+            <End Role="LoaiTaiKhoan" EntitySet="LoaiTaiKhoan" />
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TaiKhoanD__MaDic__1ED998B2" Association="Self.FK__TaiKhoanD__MaDic__1ED998B2">
+            <End Role="DichVu" EntitySet="DichVu" />
+            <End Role="TaiKhoanDichVu" EntitySet="TaiKhoanDichVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TaiKhoanD__TenTa__1FCDBCEB" Association="Self.FK__TaiKhoanD__TenTa__1FCDBCEB">
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+            <End Role="TaiKhoanDichVu" EntitySet="TaiKhoanDichVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ThongTinT__TenTa__1CF15040" Association="Self.FK__ThongTinT__TenTa__1CF15040">
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+            <End Role="ThongTinTaiKhoan" EntitySet="ThongTinTaiKhoan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CustomerManagementAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AppDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DanhMucs" EntityType="CustomerManagementAppModel.DanhMuc" />
+          <EntitySet Name="DichVus" EntityType="CustomerManagementAppModel.DichVu" />
+          <EntitySet Name="LichSuDangKies" EntityType="CustomerManagementAppModel.LichSuDangKy" />
+          <EntitySet Name="LoaiTaiKhoans" EntityType="CustomerManagementAppModel.LoaiTaiKhoan" />
+          <EntitySet Name="TaiKhoans" EntityType="CustomerManagementAppModel.TaiKhoan" />
+          <EntitySet Name="TaiKhoanDichVus" EntityType="CustomerManagementAppModel.TaiKhoanDichVu" />
+          <EntitySet Name="ThongTinTaiKhoans" EntityType="CustomerManagementAppModel.ThongTinTaiKhoan" />
+          <AssociationSet Name="FK__DichVu__MaDanhMu__1DE57479" Association="CustomerManagementAppModel.FK__DichVu__MaDanhMu__1DE57479">
+            <End Role="DanhMuc" EntitySet="DanhMucs" />
+            <End Role="DichVu" EntitySet="DichVus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LichSuDan__MaDic__20C1E124" Association="CustomerManagementAppModel.FK__LichSuDan__MaDic__20C1E124">
+            <End Role="DichVu" EntitySet="DichVus" />
+            <End Role="LichSuDangKy" EntitySet="LichSuDangKies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TaiKhoanD__MaDic__1ED998B2" Association="CustomerManagementAppModel.FK__TaiKhoanD__MaDic__1ED998B2">
+            <End Role="DichVu" EntitySet="DichVus" />
+            <End Role="TaiKhoanDichVu" EntitySet="TaiKhoanDichVus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LichSuDan__TenTa__21B6055D" Association="CustomerManagementAppModel.FK__LichSuDan__TenTa__21B6055D">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="LichSuDangKy" EntitySet="LichSuDangKies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TaiKhoan__MaLoai__1BFD2C07" Association="CustomerManagementAppModel.FK__TaiKhoan__MaLoai__1BFD2C07">
+            <End Role="LoaiTaiKhoan" EntitySet="LoaiTaiKhoans" />
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TaiKhoanD__TenTa__1FCDBCEB" Association="CustomerManagementAppModel.FK__TaiKhoanD__TenTa__1FCDBCEB">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="TaiKhoanDichVu" EntitySet="TaiKhoanDichVus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ThongTinT__TenTa__1CF15040" Association="CustomerManagementAppModel.FK__ThongTinT__TenTa__1CF15040">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="ThongTinTaiKhoan" EntitySet="ThongTinTaiKhoans" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DanhMuc">
+          <Key>
+            <PropertyRef Name="MaDanhMuc" />
+          </Key>
+          <Property Name="MaDanhMuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDanhMuc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DichVus" Relationship="CustomerManagementAppModel.FK__DichVu__MaDanhMu__1DE57479" FromRole="DanhMuc" ToRole="DichVu" />
+        </EntityType>
+        <EntityType Name="DichVu">
+          <Key>
+            <PropertyRef Name="MaDichVu" />
+          </Key>
+          <Property Name="MaDichVu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenDichVu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Gia" Type="Double" />
+          <Property Name="KhuyenMai" Type="Double" />
+          <Property Name="MoTa" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MaDanhMuc" Type="Int32" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DanhMuc" Relationship="CustomerManagementAppModel.FK__DichVu__MaDanhMu__1DE57479" FromRole="DichVu" ToRole="DanhMuc" />
+          <NavigationProperty Name="LichSuDangKies" Relationship="CustomerManagementAppModel.FK__LichSuDan__MaDic__20C1E124" FromRole="DichVu" ToRole="LichSuDangKy" />
+          <NavigationProperty Name="TaiKhoanDichVus" Relationship="CustomerManagementAppModel.FK__TaiKhoanD__MaDic__1ED998B2" FromRole="DichVu" ToRole="TaiKhoanDichVu" />
+        </EntityType>
+        <EntityType Name="LichSuDangKy">
+          <Key>
+            <PropertyRef Name="MaDichVu" />
+            <PropertyRef Name="TenTaiKhoan" />
+          </Key>
+          <Property Name="MaDichVu" Type="Int32" Nullable="false" />
+          <Property Name="Gia" Type="Double" />
+          <Property Name="TenTaiKhoan" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DichVu" Relationship="CustomerManagementAppModel.FK__LichSuDan__MaDic__20C1E124" FromRole="LichSuDangKy" ToRole="DichVu" />
+          <NavigationProperty Name="TaiKhoan" Relationship="CustomerManagementAppModel.FK__LichSuDan__TenTa__21B6055D" FromRole="LichSuDangKy" ToRole="TaiKhoan" />
+        </EntityType>
+        <EntityType Name="LoaiTaiKhoan">
+          <Key>
+            <PropertyRef Name="MaLoaiTaiKhoan" />
+          </Key>
+          <Property Name="MaLoaiTaiKhoan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLoaiTaiKhoan" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TaiKhoans" Relationship="CustomerManagementAppModel.FK__TaiKhoan__MaLoai__1BFD2C07" FromRole="LoaiTaiKhoan" ToRole="TaiKhoan" />
+        </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="TenTaiKhoan" />
+          </Key>
+          <Property Name="TenTaiKhoan" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MatKhau" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TenHienThi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MaLoaiTaiKhoan" Type="Int32" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LichSuDangKies" Relationship="CustomerManagementAppModel.FK__LichSuDan__TenTa__21B6055D" FromRole="TaiKhoan" ToRole="LichSuDangKy" />
+          <NavigationProperty Name="LoaiTaiKhoan" Relationship="CustomerManagementAppModel.FK__TaiKhoan__MaLoai__1BFD2C07" FromRole="TaiKhoan" ToRole="LoaiTaiKhoan" />
+          <NavigationProperty Name="TaiKhoanDichVus" Relationship="CustomerManagementAppModel.FK__TaiKhoanD__TenTa__1FCDBCEB" FromRole="TaiKhoan" ToRole="TaiKhoanDichVu" />
+          <NavigationProperty Name="ThongTinTaiKhoan" Relationship="CustomerManagementAppModel.FK__ThongTinT__TenTa__1CF15040" FromRole="TaiKhoan" ToRole="ThongTinTaiKhoan" />
+        </EntityType>
+        <EntityType Name="TaiKhoanDichVu">
+          <Key>
+            <PropertyRef Name="MaDichVu" />
+            <PropertyRef Name="TenTaiKhoan" />
+          </Key>
+          <Property Name="MaDichVu" Type="Int32" Nullable="false" />
+          <Property Name="TenTaiKhoan" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DichVu" Relationship="CustomerManagementAppModel.FK__TaiKhoanD__MaDic__1ED998B2" FromRole="TaiKhoanDichVu" ToRole="DichVu" />
+          <NavigationProperty Name="TaiKhoan" Relationship="CustomerManagementAppModel.FK__TaiKhoanD__TenTa__1FCDBCEB" FromRole="TaiKhoanDichVu" ToRole="TaiKhoan" />
+        </EntityType>
+        <EntityType Name="ThongTinTaiKhoan">
+          <Key>
+            <PropertyRef Name="TenTaiKhoan" />
+          </Key>
+          <Property Name="TenTaiKhoan" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="HoTen" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="3" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HinhAnh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TaiKhoan" Relationship="CustomerManagementAppModel.FK__ThongTinT__TenTa__1CF15040" FromRole="ThongTinTaiKhoan" ToRole="TaiKhoan" />
+        </EntityType>
+        <Association Name="FK__DichVu__MaDanhMu__1DE57479">
+          <End Type="CustomerManagementAppModel.DanhMuc" Role="DanhMuc" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CustomerManagementAppModel.DichVu" Role="DichVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMuc">
+              <PropertyRef Name="MaDanhMuc" />
+            </Principal>
+            <Dependent Role="DichVu">
+              <PropertyRef Name="MaDanhMuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LichSuDan__MaDic__20C1E124">
+          <End Type="CustomerManagementAppModel.DichVu" Role="DichVu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CustomerManagementAppModel.LichSuDangKy" Role="LichSuDangKy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DichVu">
+              <PropertyRef Name="MaDichVu" />
+            </Principal>
+            <Dependent Role="LichSuDangKy">
+              <PropertyRef Name="MaDichVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TaiKhoanD__MaDic__1ED998B2">
+          <End Type="CustomerManagementAppModel.DichVu" Role="DichVu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CustomerManagementAppModel.TaiKhoanDichVu" Role="TaiKhoanDichVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DichVu">
+              <PropertyRef Name="MaDichVu" />
+            </Principal>
+            <Dependent Role="TaiKhoanDichVu">
+              <PropertyRef Name="MaDichVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LichSuDan__TenTa__21B6055D">
+          <End Type="CustomerManagementAppModel.TaiKhoan" Role="TaiKhoan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CustomerManagementAppModel.LichSuDangKy" Role="LichSuDangKy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="TenTaiKhoan" />
+            </Principal>
+            <Dependent Role="LichSuDangKy">
+              <PropertyRef Name="TenTaiKhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TaiKhoan__MaLoai__1BFD2C07">
+          <End Type="CustomerManagementAppModel.LoaiTaiKhoan" Role="LoaiTaiKhoan" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CustomerManagementAppModel.TaiKhoan" Role="TaiKhoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiTaiKhoan">
+              <PropertyRef Name="MaLoaiTaiKhoan" />
+            </Principal>
+            <Dependent Role="TaiKhoan">
+              <PropertyRef Name="MaLoaiTaiKhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TaiKhoanD__TenTa__1FCDBCEB">
+          <End Type="CustomerManagementAppModel.TaiKhoan" Role="TaiKhoan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CustomerManagementAppModel.TaiKhoanDichVu" Role="TaiKhoanDichVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="TenTaiKhoan" />
+            </Principal>
+            <Dependent Role="TaiKhoanDichVu">
+              <PropertyRef Name="TenTaiKhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ThongTinT__TenTa__1CF15040">
+          <End Type="CustomerManagementAppModel.TaiKhoan" Role="TaiKhoan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CustomerManagementAppModel.ThongTinTaiKhoan" Role="ThongTinTaiKhoan" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="TenTaiKhoan" />
+            </Principal>
+            <Dependent Role="ThongTinTaiKhoan">
+              <PropertyRef Name="TenTaiKhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CustomerManagementAppModelStoreContainer" CdmEntityContainer="AppDB">
+          <EntitySetMapping Name="DanhMucs">
+            <EntityTypeMapping TypeName="CustomerManagementAppModel.DanhMuc">
+              <MappingFragment StoreEntitySet="DanhMuc">
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="TenDanhMuc" ColumnName="TenDanhMuc" />
+                <ScalarProperty Name="MaDanhMuc" ColumnName="MaDanhMuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DichVus">
+            <EntityTypeMapping TypeName="CustomerManagementAppModel.DichVu">
+              <MappingFragment StoreEntitySet="DichVu">
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="MaDanhMuc" ColumnName="MaDanhMuc" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="KhuyenMai" ColumnName="KhuyenMai" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="TenDichVu" ColumnName="TenDichVu" />
+                <ScalarProperty Name="MaDichVu" ColumnName="MaDichVu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LichSuDangKies">
+            <EntityTypeMapping TypeName="CustomerManagementAppModel.LichSuDangKy">
+              <MappingFragment StoreEntitySet="LichSuDangKy">
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="MaDichVu" ColumnName="MaDichVu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiTaiKhoans">
+            <EntityTypeMapping TypeName="CustomerManagementAppModel.LoaiTaiKhoan">
+              <MappingFragment StoreEntitySet="LoaiTaiKhoan">
+                <ScalarProperty Name="TenLoaiTaiKhoan" ColumnName="TenLoaiTaiKhoan" />
+                <ScalarProperty Name="MaLoaiTaiKhoan" ColumnName="MaLoaiTaiKhoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaiKhoans">
+            <EntityTypeMapping TypeName="CustomerManagementAppModel.TaiKhoan">
+              <MappingFragment StoreEntitySet="TaiKhoan">
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="MaLoaiTaiKhoan" ColumnName="MaLoaiTaiKhoan" />
+                <ScalarProperty Name="TenHienThi" ColumnName="TenHienThi" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaiKhoanDichVus">
+            <EntityTypeMapping TypeName="CustomerManagementAppModel.TaiKhoanDichVu">
+              <MappingFragment StoreEntitySet="TaiKhoanDichVu">
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
+                <ScalarProperty Name="MaDichVu" ColumnName="MaDichVu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThongTinTaiKhoans">
+            <EntityTypeMapping TypeName="CustomerManagementAppModel.ThongTinTaiKhoan">
+              <MappingFragment StoreEntitySet="ThongTinTaiKhoan">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
