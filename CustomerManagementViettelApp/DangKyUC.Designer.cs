@@ -31,20 +31,24 @@
             this.pnDichVuDaDangKy = new System.Windows.Forms.FlowLayoutPanel();
             this.pnDichVu = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // pnDichVuDaDangKy
             // 
-            this.pnDichVuDaDangKy.Location = new System.Drawing.Point(21, 66);
+            this.pnDichVuDaDangKy.AutoScroll = true;
+            this.pnDichVuDaDangKy.Location = new System.Drawing.Point(21, 51);
             this.pnDichVuDaDangKy.Name = "pnDichVuDaDangKy";
-            this.pnDichVuDaDangKy.Size = new System.Drawing.Size(770, 228);
+            this.pnDichVuDaDangKy.Size = new System.Drawing.Size(770, 243);
             this.pnDichVuDaDangKy.TabIndex = 0;
             // 
             // pnDichVu
             // 
+            this.pnDichVu.AutoScroll = true;
+            this.pnDichVu.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.pnDichVu.Location = new System.Drawing.Point(22, 343);
             this.pnDichVu.Name = "pnDichVu";
-            this.pnDichVu.Size = new System.Drawing.Size(770, 228);
+            this.pnDichVu.Size = new System.Drawing.Size(770, 236);
             this.pnDichVu.TabIndex = 0;
             // 
             // label1
@@ -57,17 +61,28 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Danh sách dịch vụ:";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label2.Location = new System.Drawing.Point(19, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(137, 19);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Dịch vụ đã đăng ký:";
+            // 
             // DangKyUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pnDichVu);
             this.Controls.Add(this.pnDichVuDaDangKy);
             this.Font = new System.Drawing.Font("Calibri", 12F);
             this.ForeColor = System.Drawing.Color.White;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DangKyUC";
             this.Size = new System.Drawing.Size(814, 595);
             this.Load += new System.EventHandler(this.DangKyUC_Load);
@@ -81,5 +96,6 @@
         private System.Windows.Forms.FlowLayoutPanel pnDichVuDaDangKy;
         private System.Windows.Forms.FlowLayoutPanel pnDichVu;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

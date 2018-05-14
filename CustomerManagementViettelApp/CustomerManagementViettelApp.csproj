@@ -57,8 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\AppState.cs" />
     <Compile Include="App_Code\Commons.cs" />
     <Compile Include="App_Code\Session.cs" />
+    <Compile Include="App_Code\Triggerable.cs" />
     <Compile Include="Components\DichVuComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>

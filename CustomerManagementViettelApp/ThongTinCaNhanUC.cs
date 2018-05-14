@@ -83,6 +83,7 @@ namespace CustomerManagementViettelApp
             try
             {
                 db.SaveChanges();
+                Session.LoginAccount = db.TaiKhoans.Find(Session.LoginAccount.TenTaiKhoan);
                 MessageBox.Show("Cập nhật thành công");
             }
             catch (Exception ex)
