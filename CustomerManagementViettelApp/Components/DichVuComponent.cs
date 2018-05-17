@@ -17,11 +17,36 @@ namespace CustomerManagementViettelApp.Components
 
         private DichVu service;
         private AppDB db = new AppDB();
+        private Boolean registered;
+
+        public bool Registered
+        {
+            get
+            {
+                return registered;
+            }
+
+            set
+            {
+                registered = value;
+            }
+        }
 
         public DichVuComponent(DichVu service)
         {
             InitializeComponent();
             this.service = service;
+        }
+
+        public DichVuComponent(DichVu service, bool registered)
+        {
+            InitializeComponent();
+            this.service = service;
+            this.Registered = registered;
+            if(registered)
+            {
+                btnDangKy.Text = "Hủy ĐK";
+            }
         }
 
         private void DichVuComponent_Load(object sender, EventArgs e)
@@ -33,6 +58,32 @@ namespace CustomerManagementViettelApp.Components
         }
 
         private void btnDangKy_Click(object sender, EventArgs e)
+        {
+            if(Registered)
+            {
+                HuyDangKy();
+            } else
+            {
+                DangKy();
+            }
+        }
+
+        private void HuyDangKy()
+        {
+            try
+            {
+                TaiKhoanDichVu taiKhoanDichVu = db.TaiKhoanDichVus.SingleOrDefault(x => x.TenTaiKhoan == Session.LoginAccount.TenTaiKhoan && x.MaDichVu == service.MaDichVu);
+                db.TaiKhoanDichVus.Remove(taiKhoanDichVu);
+                db.SaveChanges();
+                MessageBox.Show("Hủy đăng ký thành công");
+                AppState.DangKyUC.Trigger();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Hủy đăng ký không thành công");
+            }
+        }
+        private void DangKy()
         {
             try
             {
@@ -56,7 +107,6 @@ namespace CustomerManagementViettelApp.Components
             {
                 MessageBox.Show("Đăng ký không thành công");
             }
-            
         }
     }
 }

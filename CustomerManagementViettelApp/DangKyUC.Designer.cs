@@ -32,6 +32,9 @@
             this.pnDichVu = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.pnDanhMuc = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnTatCa = new System.Windows.Forms.Button();
+            this.pnDanhMuc.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnDichVuDaDangKy
@@ -71,11 +74,35 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Dịch vụ đã đăng ký:";
             // 
+            // pnDanhMuc
+            // 
+            this.pnDanhMuc.Controls.Add(this.btnTatCa);
+            this.pnDanhMuc.Location = new System.Drawing.Point(168, 306);
+            this.pnDanhMuc.Name = "pnDanhMuc";
+            this.pnDanhMuc.Size = new System.Drawing.Size(622, 30);
+            this.pnDanhMuc.TabIndex = 2;
+            // 
+            // btnTatCa
+            // 
+            this.btnTatCa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
+            this.btnTatCa.FlatAppearance.BorderSize = 0;
+            this.btnTatCa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTatCa.Font = new System.Drawing.Font("Calibri", 12F);
+            this.btnTatCa.ForeColor = System.Drawing.Color.White;
+            this.btnTatCa.Location = new System.Drawing.Point(3, 3);
+            this.btnTatCa.Name = "btnTatCa";
+            this.btnTatCa.Size = new System.Drawing.Size(97, 28);
+            this.btnTatCa.TabIndex = 47;
+            this.btnTatCa.Text = "Tất cả";
+            this.btnTatCa.UseVisualStyleBackColor = false;
+            this.btnTatCa.Click += new System.EventHandler(this.btnTatCa_Click);
+            // 
             // DangKyUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.Controls.Add(this.pnDanhMuc);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pnDichVu);
@@ -86,6 +113,7 @@
             this.Name = "DangKyUC";
             this.Size = new System.Drawing.Size(814, 595);
             this.Load += new System.EventHandler(this.DangKyUC_Load);
+            this.pnDanhMuc.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,5 +125,7 @@
         private System.Windows.Forms.FlowLayoutPanel pnDichVu;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.FlowLayoutPanel pnDanhMuc;
+        private System.Windows.Forms.Button btnTatCa;
     }
 }

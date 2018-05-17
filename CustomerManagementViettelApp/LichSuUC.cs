@@ -43,8 +43,11 @@ namespace CustomerManagementViettelApp
 
         public void LoadDataBinding()
         {
-            //txtId.DataBindings.Add("Text", dtgv.DataSource, "MaLoaiTaiKhoan", true, DataSourceUpdateMode.Never);
-            //txtTen.DataBindings.Add("Text", dtgv.DataSource, "TenLoaiTaiKhoan", true, DataSourceUpdateMode.Never);
+            lblMaDichVu.DataBindings.Add("Text", dtgv.DataSource, "x.DichVu.MaDichVu", true, DataSourceUpdateMode.Never);
+            lblTenDichVu.DataBindings.Add("Text", dtgv.DataSource, "x.DichVu.TenDichVu", true, DataSourceUpdateMode.Never);
+            lblGia.DataBindings.Add("Text", dtgv.DataSource, "x.DichVu.Gia", true, DataSourceUpdateMode.Never);
+            lblKhuyenMai.DataBindings.Add("Text", dtgv.DataSource, "x.DichVu.KhuyenMai", true, DataSourceUpdateMode.Never);
+            lblMoTa.DataBindings.Add("Text", dtgv.DataSource, "x.DichVu.MoTa", true, DataSourceUpdateMode.Never);
         }
 
         public void HideColumns()

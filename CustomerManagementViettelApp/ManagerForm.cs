@@ -11,11 +11,14 @@ using System.Windows.Forms;
 
 namespace CustomerManagementViettelApp
 {
-    public partial class ManagerForm : Form
+    public partial class ManagerForm : Form, Triggerable
     {
         public ManagerForm()
         {
             InitializeComponent();
+            AppState.ManagerForm = this;
+            timer1.Interval = 30;
+            timer1.Start();
         }
         #region menu
         private bool isMouseDown = false;
@@ -141,7 +144,14 @@ namespace CustomerManagementViettelApp
             f.Show();
         }
 
-        
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (lblChayChu.Location.Y == -200)
+            {
+                lblChayChu.Location = new Point(lblChayChu.Location.X, 300);
+            }
+            lblChayChu.Location = new Point(lblChayChu.Location.X, lblChayChu.Location.Y - 1);
+        }
 
         private void btnThongTinCaNhan_Click(object sender, EventArgs e)
         {
@@ -151,5 +161,12 @@ namespace CustomerManagementViettelApp
             f.Show();
         }
 
+        public void Trigger()
+        {
+            DKDichVuUC f = new DKDichVuUC(Session.TaiKhoanQLDV);
+            pnContent.Controls.Clear();
+            pnContent.Controls.Add(f);
+            f.Show();
+        }
     }
 }

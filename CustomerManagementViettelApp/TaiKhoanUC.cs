@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CustomerManagementViettelApp.EF;
+using CustomerManagementViettelApp.App_Code;
 
 namespace CustomerManagementViettelApp
 {
@@ -128,6 +129,10 @@ namespace CustomerManagementViettelApp
             || x.TenTaiKhoan.Contains(txtTimKiem.Text) || x.LoaiTaiKhoan.TenLoaiTaiKhoan.Contains(txtTimKiem.Text)).ToList();
         }
 
-        
+        private void btnQLDichVu_Click(object sender, EventArgs e)
+        {
+            Session.TaiKhoanQLDV = db.TaiKhoans.Find(txtUsername.Text);
+            AppState.ManagerForm.Trigger();
+        }
     }
 }

@@ -64,6 +64,10 @@
             this.pnContent.SuspendLayout();
             this.SuspendLayout();
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;

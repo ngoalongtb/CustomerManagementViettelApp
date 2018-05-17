@@ -85,6 +85,12 @@
     <Compile Include="DichVuUC.Designer.cs">
       <DependentUpon>DichVuUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="DKDichVuUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DKDichVuUC.Designer.cs">
+      <DependentUpon>DKDichVuUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="EF\AppDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -176,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DichVuUC.resx">
       <DependentUpon>DichVuUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DKDichVuUC.resx">
+      <DependentUpon>DKDichVuUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LichSuUC.resx">
       <DependentUpon>LichSuUC.cs</DependentUpon>

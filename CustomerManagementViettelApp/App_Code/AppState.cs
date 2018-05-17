@@ -10,5 +10,6 @@ namespace CustomerManagementViettelApp.App_Code
     public class AppState
     {
         public static Triggerable DangKyUC { get; set; }
+        public static Triggerable ManagerForm { get; set; }
     }
 }

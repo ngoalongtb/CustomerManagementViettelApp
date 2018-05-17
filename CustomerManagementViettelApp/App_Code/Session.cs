@@ -10,5 +10,6 @@ namespace CustomerManagementViettelApp.App_Code
     public class Session
     {
         public static TaiKhoan LoginAccount { get; set; }
+        public static TaiKhoan TaiKhoanQLDV { get; set; }
     }
 }
