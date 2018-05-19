@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CustomerManagementViettelApp.EF;
+using System.IO;
 
 namespace CustomerManagementViettelApp
 {
@@ -19,6 +20,7 @@ namespace CustomerManagementViettelApp
         }
         private BindingSource bds = new BindingSource();
         private AppDB db = new AppDB();
+        private OpenFileDialog open = new OpenFileDialog();
 
         private void DichVuUC_Load(object sender, EventArgs e)
         {
@@ -31,7 +33,7 @@ namespace CustomerManagementViettelApp
         }
         public void LoadDtgv()
         {
-            bds.DataSource = db.DichVus.Select(x => new { x.MaDichVu, x.TenDichVu, x.Gia, x.KhuyenMai, x.MaDanhMuc, x.DanhMuc.TenDanhMuc, x.MoTa, x.NgayTao }).ToList();
+            bds.DataSource = db.DichVus.Select(x => new { x.MaDichVu, x.TenDichVu, x.Gia, x.KhuyenMai, x.MaDanhMuc, x.DanhMuc.TenDanhMuc, x.MoTa, x.NgayTao, x }).ToList();
         }
         public void ChangHeader()
         {
@@ -52,6 +54,7 @@ namespace CustomerManagementViettelApp
             txtKhuyenMai.DataBindings.Add("Text", dtgv.DataSource, "KhuyenMai", true, DataSourceUpdateMode.Never);
             txtMoTa.DataBindings.Add("Text", dtgv.DataSource, "MoTa", true, DataSourceUpdateMode.Never);
             cbxDanhMuc.DataBindings.Add("SelectedValue", dtgv.DataSource, "MaDanhMuc", true, DataSourceUpdateMode.Never);
+            txtHinhAnh.DataBindings.Add("Text", dtgv.DataSource, "x.HinhAnh", true, DataSourceUpdateMode.Never);
         }
 
         public void LoadMore()
@@ -64,6 +67,8 @@ namespace CustomerManagementViettelApp
         public void HideColumn()
         {
             dtgv.Columns["MoTa"].Visible = false;
+            dtgv.Columns["MaDanhMuc"].Visible = false;
+            dtgv.Columns["x"].Visible = false;
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -82,6 +87,13 @@ namespace CustomerManagementViettelApp
             try
             {
                 db.DichVus.Add(service);
+                db.SaveChanges();
+                if (open.CheckFileExists)
+                {
+                    string directory = AppDomain.CurrentDomain.BaseDirectory;
+                    File.Copy(open.FileName, directory + service.MaDichVu + open.SafeFileName);
+                    service.HinhAnh = open.SafeFileName;
+                }
                 db.SaveChanges();
                 MessageBox.Show("Thêm mới thành công");
                 LoadDtgv();
@@ -102,6 +114,13 @@ namespace CustomerManagementViettelApp
                 service.MoTa = txtMoTa.Text;
                 service.TenDichVu = txtTenDichVu.Text;
                 service.MaDanhMuc = (int)cbxDanhMuc.SelectedValue;
+
+                if (open.CheckFileExists)
+                {
+                    string directory = AppDomain.CurrentDomain.BaseDirectory;
+                    File.Copy(open.FileName, directory + service.MaDichVu + open.SafeFileName);
+                    service.HinhAnh = open.SafeFileName;
+                }
                 db.SaveChanges();
                 MessageBox.Show("Cập nhật thành công");
                 LoadDtgv();
@@ -138,6 +157,13 @@ namespace CustomerManagementViettelApp
             bds.DataSource = db.DichVus.Select(x => new { x.MaDichVu, x.TenDichVu, x.Gia, x.KhuyenMai, x.MaDanhMuc, x.DanhMuc.TenDanhMuc, x.MoTa, x.NgayTao }).Where(x => x.MaDichVu.ToString().Contains(txtTimKiem.Text) || x.TenDichVu.Contains(txtTimKiem.Text)).ToList();
         }
 
-        
+        private void btnUploadImage_Click(object sender, EventArgs e)
+        {
+            open.Filter = "Image Files(*.jpeg;*.bmp;*.png;*.jpg)|*.jpeg;*.bmp;*.png;*.jpg";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                txtHinhAnh.Text = open.SafeFileName;
+            }
+        }
     }
 }

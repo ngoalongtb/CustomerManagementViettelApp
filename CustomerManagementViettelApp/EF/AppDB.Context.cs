@@ -25,6 +25,7 @@ namespace CustomerManagementViettelApp.EF
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<DanhMuc> DanhMucs { get; set; }
         public virtual DbSet<DichVu> DichVus { get; set; }
         public virtual DbSet<LichSuDangKy> LichSuDangKies { get; set; }

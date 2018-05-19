@@ -14,7 +14,8 @@ namespace CustomerManagementViettelApp.EF
     
     public partial class LichSuDangKy
     {
-        public int MaDichVu { get; set; }
+        public int Ma { get; set; }
+        public Nullable<int> MaDichVu { get; set; }
         public Nullable<double> Gia { get; set; }
         public string TenTaiKhoan { get; set; }
         public Nullable<System.DateTime> NgayTao { get; set; }

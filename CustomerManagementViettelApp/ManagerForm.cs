@@ -155,7 +155,7 @@ namespace CustomerManagementViettelApp
 
         private void btnThongTinCaNhan_Click(object sender, EventArgs e)
         {
-            ThongTinCaNhanUC f = new ThongTinCaNhanUC();
+            pn f = new pn();
             pnContent.Controls.Clear();
             pnContent.Controls.Add(f);
             f.Show();

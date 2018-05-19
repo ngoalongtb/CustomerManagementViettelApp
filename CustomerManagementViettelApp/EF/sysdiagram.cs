@@ -12,16 +12,12 @@ namespace CustomerManagementViettelApp.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class ThongTinTaiKhoan
+    public partial class sysdiagram
     {
-        public string TenTaiKhoan { get; set; }
-        public string HoTen { get; set; }
-        public Nullable<System.DateTime> NgaySinh { get; set; }
-        public string SoDienThoai { get; set; }
-        public string HinhAnh { get; set; }
-        public string Email { get; set; }
-        public Nullable<double> Tien { get; set; }
-    
-        public virtual TaiKhoan TaiKhoan { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

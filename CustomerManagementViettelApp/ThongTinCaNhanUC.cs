@@ -9,13 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CustomerManagementViettelApp.App_Code;
 using CustomerManagementViettelApp.EF;
+using System.IO;
 
 namespace CustomerManagementViettelApp
 {
-    public partial class ThongTinCaNhanUC : UserControl
+    public partial class pn : UserControl
     {
         private AppDB db = new AppDB();
-        public ThongTinCaNhanUC()
+        private OpenFileDialog open = new OpenFileDialog();
+        public pn()
         {
             InitializeComponent();
             LoadData();
@@ -33,6 +35,12 @@ namespace CustomerManagementViettelApp
                 txtHinhAnh.Text = loginAccount.ThongTinTaiKhoan.HinhAnh;
                 txtEmail.Text = loginAccount.ThongTinTaiKhoan.Email;
                 txtSoDienThoai.Text = loginAccount.ThongTinTaiKhoan.SoDienThoai;
+                lblTien.Text = loginAccount.ThongTinTaiKhoan.Tien.ToString();
+                if(loginAccount.ThongTinTaiKhoan.HinhAnh != null)
+                {
+                    pnHinhAnh.BackgroundImageLayout = ImageLayout.Stretch;
+                    pnHinhAnh.BackgroundImage = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + loginAccount.TenTaiKhoan + loginAccount.ThongTinTaiKhoan.HinhAnh);
+                }
                 if(loginAccount.ThongTinTaiKhoan.NgaySinh != null)
                 {
                     dtpkNgaySinh.Value = loginAccount.ThongTinTaiKhoan.NgaySinh.Value;
@@ -80,6 +88,12 @@ namespace CustomerManagementViettelApp
             account.ThongTinTaiKhoan.SoDienThoai = txtSoDienThoai.Text;
             account.ThongTinTaiKhoan.NgaySinh = dtpkNgaySinh.Value;
 
+            if(open.CheckFileExists)
+            {
+                string directory = AppDomain.CurrentDomain.BaseDirectory;
+                File.Copy(open.FileName, directory + Session.LoginAccount.TenTaiKhoan + open.SafeFileName);
+            }
+
             try
             {
                 db.SaveChanges();
@@ -89,6 +103,16 @@ namespace CustomerManagementViettelApp
             catch (Exception ex)
             {
                 MessageBox.Show("Thất bại. Xin lỗi vì sự cố đáng tiếc. Vui lòng gặp admin để sửa lỗi!!!");
+            }
+        }
+
+        private void btnUploadImage_Click(object sender, EventArgs e)
+        {
+            
+            open.Filter = "Image Files(*.jpeg;*.bmp;*.png;*.jpg)|*.jpeg;*.bmp;*.png;*.jpg";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                txtHinhAnh.Text = open.SafeFileName;
             }
         }
     }

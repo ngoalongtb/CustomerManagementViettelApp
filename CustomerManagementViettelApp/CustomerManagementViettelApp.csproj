@@ -118,6 +118,9 @@
     <Compile Include="EF\LoaiTaiKhoan.cs">
       <DependentUpon>AppDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\sysdiagram.cs">
+      <DependentUpon>AppDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\TaiKhoan.cs">
       <DependentUpon>AppDB.tt</DependentUpon>
     </Compile>
@@ -206,6 +209,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="TaiKhoanUC.resx">
       <DependentUpon>TaiKhoanUC.cs</DependentUpon>
@@ -239,7 +243,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Assets\Images\fc32f922.png" />
     <Content Include="Assets\Images\SMS_0.png" />
+    <Content Include="Assets\Images\upload.png" />
     <Content Include="Assets\Images\viettel-icon.png" />
     <Content Include="EF\AppDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

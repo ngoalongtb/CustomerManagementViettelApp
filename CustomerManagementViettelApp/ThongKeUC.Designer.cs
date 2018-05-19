@@ -32,22 +32,20 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dtpkTo = new System.Windows.Forms.DateTimePicker();
             this.dtpkFrom = new System.Windows.Forms.DateTimePicker();
-            this.cbxType = new System.Windows.Forms.ComboBox();
-            this.btnShowAll = new System.Windows.Forms.Button();
-            this.btnDel = new System.Windows.Forms.Button();
             this.btnShowReport = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtTongTien = new System.Windows.Forms.TextBox();
             this.dtgv = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lblTongTien = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgv)).BeginInit();
             this.SuspendLayout();
             // 
             // dtpkTo
             // 
             this.dtpkTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpkTo.Location = new System.Drawing.Point(639, 28);
+            this.dtpkTo.Location = new System.Drawing.Point(369, 26);
             this.dtpkTo.Name = "dtpkTo";
             this.dtpkTo.Size = new System.Drawing.Size(117, 27);
             this.dtpkTo.TabIndex = 65;
@@ -61,45 +59,6 @@
             this.dtpkFrom.Size = new System.Drawing.Size(117, 27);
             this.dtpkFrom.TabIndex = 66;
             // 
-            // cbxType
-            // 
-            this.cbxType.FormattingEnabled = true;
-            this.cbxType.Items.AddRange(new object[] {
-            "Hóa đơn nhập",
-            "Hóa đơn xuất"});
-            this.cbxType.Location = new System.Drawing.Point(347, 26);
-            this.cbxType.Name = "cbxType";
-            this.cbxType.Size = new System.Drawing.Size(132, 27);
-            this.cbxType.TabIndex = 64;
-            // 
-            // btnShowAll
-            // 
-            this.btnShowAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
-            this.btnShowAll.FlatAppearance.BorderSize = 0;
-            this.btnShowAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShowAll.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShowAll.ForeColor = System.Drawing.Color.White;
-            this.btnShowAll.Location = new System.Drawing.Point(457, 527);
-            this.btnShowAll.Name = "btnShowAll";
-            this.btnShowAll.Size = new System.Drawing.Size(186, 42);
-            this.btnShowAll.TabIndex = 63;
-            this.btnShowAll.Text = "Xem tất cả";
-            this.btnShowAll.UseVisualStyleBackColor = false;
-            // 
-            // btnDel
-            // 
-            this.btnDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
-            this.btnDel.FlatAppearance.BorderSize = 0;
-            this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDel.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDel.ForeColor = System.Drawing.Color.White;
-            this.btnDel.Location = new System.Drawing.Point(457, 479);
-            this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(186, 42);
-            this.btnDel.TabIndex = 62;
-            this.btnDel.Text = "Xóa bỏ";
-            this.btnDel.UseVisualStyleBackColor = false;
-            // 
             // btnShowReport
             // 
             this.btnShowReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -107,7 +66,7 @@
             this.btnShowReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShowReport.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShowReport.ForeColor = System.Drawing.Color.White;
-            this.btnShowReport.Location = new System.Drawing.Point(457, 431);
+            this.btnShowReport.Location = new System.Drawing.Point(572, 449);
             this.btnShowReport.Name = "btnShowReport";
             this.btnShowReport.Size = new System.Drawing.Size(186, 42);
             this.btnShowReport.TabIndex = 61;
@@ -118,7 +77,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(557, 32);
+            this.label3.Location = new System.Drawing.Point(287, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 19);
             this.label3.TabIndex = 58;
@@ -138,18 +97,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(105, 478);
+            this.label1.Location = new System.Drawing.Point(365, 462);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 19);
             this.label1.TabIndex = 60;
             this.label1.Text = "Tổng tiền:";
-            // 
-            // txtTongTien
-            // 
-            this.txtTongTien.Location = new System.Drawing.Point(198, 470);
-            this.txtTongTien.Name = "txtTongTien";
-            this.txtTongTien.Size = new System.Drawing.Size(150, 27);
-            this.txtTongTien.TabIndex = 57;
             // 
             // dtgv
             // 
@@ -188,26 +140,51 @@
             this.dtgv.Size = new System.Drawing.Size(789, 336);
             this.dtgv.TabIndex = 56;
             // 
-            // ThongKe
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(569, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(186, 42);
+            this.button1.TabIndex = 62;
+            this.button1.Text = "Thống kê";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lblTongTien
+            // 
+            this.lblTongTien.AutoSize = true;
+            this.lblTongTien.BackColor = System.Drawing.Color.Transparent;
+            this.lblTongTien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblTongTien.Location = new System.Drawing.Point(444, 462);
+            this.lblTongTien.Name = "lblTongTien";
+            this.lblTongTien.Size = new System.Drawing.Size(73, 19);
+            this.lblTongTien.TabIndex = 60;
+            this.lblTongTien.Text = "Tổng tiền:";
+            // 
+            // ThongKeUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.Controls.Add(this.dtpkTo);
             this.Controls.Add(this.dtpkFrom);
-            this.Controls.Add(this.cbxType);
-            this.Controls.Add(this.btnShowAll);
-            this.Controls.Add(this.btnDel);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnShowReport);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblTongTien);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtTongTien);
             this.Controls.Add(this.dtgv);
             this.Font = new System.Drawing.Font("Calibri", 12F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "ThongKe";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "ThongKeUC";
             this.Size = new System.Drawing.Size(814, 595);
+            this.Load += new System.EventHandler(this.ThongKeUC_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -218,14 +195,12 @@
 
         private System.Windows.Forms.DateTimePicker dtpkTo;
         private System.Windows.Forms.DateTimePicker dtpkFrom;
-        private System.Windows.Forms.ComboBox cbxType;
-        private System.Windows.Forms.Button btnShowAll;
-        private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Button btnShowReport;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtTongTien;
         private System.Windows.Forms.DataGridView dtgv;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblTongTien;
     }
 }

@@ -54,7 +54,15 @@ namespace CustomerManagementViettelApp.Components
             this.lblTenDichVu.Text = service.TenDichVu;
             this.lblGia.Text = service.Gia.ToString();
             this.lblKhuyenMai.Text = service.KhuyenMai.ToString() + "%";
-            this.lblThanhTien.Text = (service.Gia.Value * (100 - service.KhuyenMai.Value)).ToString();
+            this.lblThanhTien.Text = (service.Gia.Value * (1 - 1.0*service.KhuyenMai.Value/100)).ToString();
+
+            if (service.HinhAnh != null)
+            {
+                string directory = AppDomain.CurrentDomain.BaseDirectory;
+                panel1.BackgroundImage = Image.FromFile(directory + service.MaDichVu + service.HinhAnh);
+            }
+            
+            
         }
 
         private void btnDangKy_Click(object sender, EventArgs e)
@@ -85,6 +93,13 @@ namespace CustomerManagementViettelApp.Components
         }
         private void DangKy()
         {
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(Session.LoginAccount.TenTaiKhoan);
+            ThongTinTaiKhoan thongTinTaiKhoan = taiKhoan.ThongTinTaiKhoan;
+            if(taiKhoan.ThongTinTaiKhoan.Tien < service.Gia * (1 - 1.0 * service.KhuyenMai.Value / 100))
+            {
+                MessageBox.Show("Bạn không đủ tiền để đăng ký dịch vụ. Bạn còn " + taiKhoan.ThongTinTaiKhoan.Tien + " VND");
+                return;
+            }
             try
             {
                 TaiKhoanDichVu taiKhoanDichVu = new TaiKhoanDichVu();
@@ -94,11 +109,13 @@ namespace CustomerManagementViettelApp.Components
                 db.TaiKhoanDichVus.Add(taiKhoanDichVu);
 
                 LichSuDangKy lichSu = new LichSuDangKy();
-                lichSu.Gia = service.Gia * (100 - service.KhuyenMai);
+                lichSu.Gia = service.Gia * (1 - 1.0 * service.KhuyenMai.Value / 100);
                 lichSu.NgayTao = DateTime.Now;
                 lichSu.TenTaiKhoan = Session.LoginAccount.TenTaiKhoan;
                 lichSu.MaDichVu = this.service.MaDichVu;
                 db.LichSuDangKies.Add(lichSu);
+
+                thongTinTaiKhoan.Tien -= lichSu.Gia;
                 db.SaveChanges();
                 MessageBox.Show("Đăng ký thành công");
                 AppState.DangKyUC.Trigger();

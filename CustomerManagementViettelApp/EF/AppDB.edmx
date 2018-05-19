@@ -24,15 +24,16 @@
           <Property Name="MoTa" Type="nvarchar" MaxLength="255" />
           <Property Name="MaDanhMuc" Type="int" />
           <Property Name="NgayTao" Type="datetime" />
+          <Property Name="HinhAnh" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="LichSuDangKy">
           <Key>
-            <PropertyRef Name="MaDichVu" />
-            <PropertyRef Name="TenTaiKhoan" />
+            <PropertyRef Name="Ma" />
           </Key>
-          <Property Name="MaDichVu" Type="int" Nullable="false" />
+          <Property Name="Ma" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaDichVu" Type="int" />
           <Property Name="Gia" Type="float" />
-          <Property Name="TenTaiKhoan" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TenTaiKhoan" Type="varchar" MaxLength="255" />
           <Property Name="NgayTao" Type="datetime" />
         </EntityType>
         <EntityType Name="LoaiTaiKhoan">
@@ -41,6 +42,16 @@
           </Key>
           <Property Name="MaLoaiTaiKhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenLoaiTaiKhoan" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
@@ -71,6 +82,7 @@
           <Property Name="SoDienThoai" Type="nvarchar" MaxLength="20" />
           <Property Name="HinhAnh" Type="nvarchar" MaxLength="255" />
           <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Tien" Type="float" />
         </EntityType>
         <Association Name="FK__DichVu__MaDanhMu__1DE57479">
           <End Role="DanhMuc" Type="Self.DanhMuc" Multiplicity="0..1">
@@ -86,10 +98,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LichSuDan__MaDic__20C1E124">
-          <End Role="DichVu" Type="Self.DichVu" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK__LichSuDan__MaDic__36B12243">
+          <End Role="DichVu" Type="Self.DichVu" Multiplicity="0..1" />
           <End Role="LichSuDangKy" Type="Self.LichSuDangKy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DichVu">
@@ -100,10 +110,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LichSuDan__TenTa__21B6055D">
-          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK__LichSuDan__TenTa__37A5467C">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <End Role="LichSuDangKy" Type="Self.LichSuDangKy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaiKhoan">
@@ -175,6 +183,7 @@
           <EntitySet Name="DichVu" EntityType="Self.DichVu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LichSuDangKy" EntityType="Self.LichSuDangKy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiTaiKhoan" EntityType="Self.LoaiTaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoanDichVu" EntityType="Self.TaiKhoanDichVu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongTinTaiKhoan" EntityType="Self.ThongTinTaiKhoan" Schema="dbo" store:Type="Tables" />
@@ -182,11 +191,11 @@
             <End Role="DanhMuc" EntitySet="DanhMuc" />
             <End Role="DichVu" EntitySet="DichVu" />
           </AssociationSet>
-          <AssociationSet Name="FK__LichSuDan__MaDic__20C1E124" Association="Self.FK__LichSuDan__MaDic__20C1E124">
+          <AssociationSet Name="FK__LichSuDan__MaDic__36B12243" Association="Self.FK__LichSuDan__MaDic__36B12243">
             <End Role="DichVu" EntitySet="DichVu" />
             <End Role="LichSuDangKy" EntitySet="LichSuDangKy" />
           </AssociationSet>
-          <AssociationSet Name="FK__LichSuDan__TenTa__21B6055D" Association="Self.FK__LichSuDan__TenTa__21B6055D">
+          <AssociationSet Name="FK__LichSuDan__TenTa__37A5467C" Association="Self.FK__LichSuDan__TenTa__37A5467C">
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
             <End Role="LichSuDangKy" EntitySet="LichSuDangKy" />
           </AssociationSet>
@@ -212,6 +221,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="CustomerManagementAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AppDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="CustomerManagementAppModel.sysdiagram" />
           <EntitySet Name="DanhMucs" EntityType="CustomerManagementAppModel.DanhMuc" />
           <EntitySet Name="DichVus" EntityType="CustomerManagementAppModel.DichVu" />
           <EntitySet Name="LichSuDangKies" EntityType="CustomerManagementAppModel.LichSuDangKy" />
@@ -223,7 +233,7 @@
             <End Role="DanhMuc" EntitySet="DanhMucs" />
             <End Role="DichVu" EntitySet="DichVus" />
           </AssociationSet>
-          <AssociationSet Name="FK__LichSuDan__MaDic__20C1E124" Association="CustomerManagementAppModel.FK__LichSuDan__MaDic__20C1E124">
+          <AssociationSet Name="FK__LichSuDan__MaDic__36B12243" Association="CustomerManagementAppModel.FK__LichSuDan__MaDic__36B12243">
             <End Role="DichVu" EntitySet="DichVus" />
             <End Role="LichSuDangKy" EntitySet="LichSuDangKies" />
           </AssociationSet>
@@ -231,7 +241,7 @@
             <End Role="DichVu" EntitySet="DichVus" />
             <End Role="TaiKhoanDichVu" EntitySet="TaiKhoanDichVus" />
           </AssociationSet>
-          <AssociationSet Name="FK__LichSuDan__TenTa__21B6055D" Association="CustomerManagementAppModel.FK__LichSuDan__TenTa__21B6055D">
+          <AssociationSet Name="FK__LichSuDan__TenTa__37A5467C" Association="CustomerManagementAppModel.FK__LichSuDan__TenTa__37A5467C">
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
             <End Role="LichSuDangKy" EntitySet="LichSuDangKies" />
           </AssociationSet>
@@ -248,6 +258,16 @@
             <End Role="ThongTinTaiKhoan" EntitySet="ThongTinTaiKhoans" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="DanhMuc">
           <Key>
             <PropertyRef Name="MaDanhMuc" />
@@ -269,20 +289,21 @@
           <Property Name="MaDanhMuc" Type="Int32" />
           <Property Name="NgayTao" Type="DateTime" Precision="3" />
           <NavigationProperty Name="DanhMuc" Relationship="CustomerManagementAppModel.FK__DichVu__MaDanhMu__1DE57479" FromRole="DichVu" ToRole="DanhMuc" />
-          <NavigationProperty Name="LichSuDangKies" Relationship="CustomerManagementAppModel.FK__LichSuDan__MaDic__20C1E124" FromRole="DichVu" ToRole="LichSuDangKy" />
+          <NavigationProperty Name="LichSuDangKies" Relationship="CustomerManagementAppModel.FK__LichSuDan__MaDic__36B12243" FromRole="DichVu" ToRole="LichSuDangKy" />
           <NavigationProperty Name="TaiKhoanDichVus" Relationship="CustomerManagementAppModel.FK__TaiKhoanD__MaDic__1ED998B2" FromRole="DichVu" ToRole="TaiKhoanDichVu" />
+          <Property Name="HinhAnh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="LichSuDangKy">
           <Key>
-            <PropertyRef Name="MaDichVu" />
-            <PropertyRef Name="TenTaiKhoan" />
+            <PropertyRef Name="Ma" />
           </Key>
-          <Property Name="MaDichVu" Type="Int32" Nullable="false" />
+          <Property Name="Ma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaDichVu" Type="Int32" />
           <Property Name="Gia" Type="Double" />
-          <Property Name="TenTaiKhoan" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TenTaiKhoan" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="NgayTao" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="DichVu" Relationship="CustomerManagementAppModel.FK__LichSuDan__MaDic__20C1E124" FromRole="LichSuDangKy" ToRole="DichVu" />
-          <NavigationProperty Name="TaiKhoan" Relationship="CustomerManagementAppModel.FK__LichSuDan__TenTa__21B6055D" FromRole="LichSuDangKy" ToRole="TaiKhoan" />
+          <NavigationProperty Name="DichVu" Relationship="CustomerManagementAppModel.FK__LichSuDan__MaDic__36B12243" FromRole="LichSuDangKy" ToRole="DichVu" />
+          <NavigationProperty Name="TaiKhoan" Relationship="CustomerManagementAppModel.FK__LichSuDan__TenTa__37A5467C" FromRole="LichSuDangKy" ToRole="TaiKhoan" />
         </EntityType>
         <EntityType Name="LoaiTaiKhoan">
           <Key>
@@ -301,7 +322,7 @@
           <Property Name="TenHienThi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="MaLoaiTaiKhoan" Type="Int32" />
           <Property Name="NgayTao" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="LichSuDangKies" Relationship="CustomerManagementAppModel.FK__LichSuDan__TenTa__21B6055D" FromRole="TaiKhoan" ToRole="LichSuDangKy" />
+          <NavigationProperty Name="LichSuDangKies" Relationship="CustomerManagementAppModel.FK__LichSuDan__TenTa__37A5467C" FromRole="TaiKhoan" ToRole="LichSuDangKy" />
           <NavigationProperty Name="LoaiTaiKhoan" Relationship="CustomerManagementAppModel.FK__TaiKhoan__MaLoai__1BFD2C07" FromRole="TaiKhoan" ToRole="LoaiTaiKhoan" />
           <NavigationProperty Name="TaiKhoanDichVus" Relationship="CustomerManagementAppModel.FK__TaiKhoanD__TenTa__1FCDBCEB" FromRole="TaiKhoan" ToRole="TaiKhoanDichVu" />
           <NavigationProperty Name="ThongTinTaiKhoan" Relationship="CustomerManagementAppModel.FK__ThongTinT__TenTa__1CF15040" FromRole="TaiKhoan" ToRole="ThongTinTaiKhoan" />
@@ -328,6 +349,7 @@
           <Property Name="HinhAnh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TaiKhoan" Relationship="CustomerManagementAppModel.FK__ThongTinT__TenTa__1CF15040" FromRole="ThongTinTaiKhoan" ToRole="TaiKhoan" />
+          <Property Name="Tien" Type="Double" />
         </EntityType>
         <Association Name="FK__DichVu__MaDanhMu__1DE57479">
           <End Type="CustomerManagementAppModel.DanhMuc" Role="DanhMuc" Multiplicity="0..1">
@@ -343,10 +365,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LichSuDan__MaDic__20C1E124">
-          <End Type="CustomerManagementAppModel.DichVu" Role="DichVu" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK__LichSuDan__MaDic__36B12243">
+          <End Type="CustomerManagementAppModel.DichVu" Role="DichVu" Multiplicity="0..1" />
           <End Type="CustomerManagementAppModel.LichSuDangKy" Role="LichSuDangKy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DichVu">
@@ -371,10 +391,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LichSuDan__TenTa__21B6055D">
-          <End Type="CustomerManagementAppModel.TaiKhoan" Role="TaiKhoan" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK__LichSuDan__TenTa__37A5467C">
+          <End Type="CustomerManagementAppModel.TaiKhoan" Role="TaiKhoan" Multiplicity="0..1" />
           <End Type="CustomerManagementAppModel.LichSuDangKy" Role="LichSuDangKy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaiKhoan">
@@ -433,6 +451,17 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CustomerManagementAppModelStoreContainer" CdmEntityContainer="AppDB">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CustomerManagementAppModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DanhMucs">
             <EntityTypeMapping TypeName="CustomerManagementAppModel.DanhMuc">
               <MappingFragment StoreEntitySet="DanhMuc">
@@ -445,6 +474,7 @@
           <EntitySetMapping Name="DichVus">
             <EntityTypeMapping TypeName="CustomerManagementAppModel.DichVu">
               <MappingFragment StoreEntitySet="DichVu">
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
                 <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="MaDanhMuc" ColumnName="MaDanhMuc" />
                 <ScalarProperty Name="MoTa" ColumnName="MoTa" />
@@ -462,6 +492,7 @@
                 <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
                 <ScalarProperty Name="Gia" ColumnName="Gia" />
                 <ScalarProperty Name="MaDichVu" ColumnName="MaDichVu" />
+                <ScalarProperty Name="Ma" ColumnName="Ma" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -496,6 +527,7 @@
           <EntitySetMapping Name="ThongTinTaiKhoans">
             <EntityTypeMapping TypeName="CustomerManagementAppModel.ThongTinTaiKhoan">
               <MappingFragment StoreEntitySet="ThongTinTaiKhoan">
+                <ScalarProperty Name="Tien" ColumnName="Tien" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
                 <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
