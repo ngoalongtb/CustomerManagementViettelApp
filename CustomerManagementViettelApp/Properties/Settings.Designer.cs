@@ -26,5 +26,7 @@ namespace CustomerManagementViettelApp.Properties
                 return defaultInstance;
             }
         }
+
+        public object UserDesignerOptions { get; internal set; }
     }
 }

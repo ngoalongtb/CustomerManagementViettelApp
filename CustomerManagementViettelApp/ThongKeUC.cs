@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CustomerManagementViettelApp.EF;
+using DevExpress.XtraReports.UI;
+using CustomerManagementViettelApp.Report;
+using CustomerManagementViettelApp.App_Code;
 
 namespace CustomerManagementViettelApp
 {
@@ -72,6 +75,50 @@ namespace CustomerManagementViettelApp
         {
             LoadDtgv();
             CalculateMoney();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void btnShowReport_Click(object sender, EventArgs e)
+        {
+            ReportModel reportModel = new ReportModel();
+            reportModel.Staff = Session.LoginAccount.TenTaiKhoan;
+            reportModel.FromDate = dtpkFrom.Value.ToString();
+            reportModel.ToDate = dtpkTo.Value.ToString();
+            reportModel.Date = DateTime.Now.ToString();
+
+           
+
+            List<ReportItem> list = new List<ReportItem>();
+            
+
+            var temp = db.LichSuDangKies.Where(u => u.NgayTao >= dtpkFrom.Value && u.NgayTao <= dtpkTo.Value).GroupBy(u => u.DichVu).Select(x => new { x.Key.MaDichVu, TenDichVu = x.Key.TenDichVu, Count = x.Count() }).ToList();
+            
+            foreach (var item in temp)
+            {
+                ReportItem reportItem = new ReportItem();
+                reportItem.MaDichVu = item.MaDichVu.ToString();
+                reportItem.SoLuotDangKy = item.Count.ToString();
+                reportItem.TenDichVu = item.TenDichVu;
+                list.Add(reportItem);
+            }
+
+            double total = 0;
+            var temp2 = db.LichSuDangKies.Where(u => u.NgayTao >= dtpkFrom.Value && u.NgayTao <= dtpkTo.Value).ToList();
+            foreach (var item in temp2)
+            {
+                total += item.Gia.Value;
+            }
+
+            reportModel.Total = total.ToString();
+            XtraReport1 report = new XtraReport1(reportModel);
+            report.DataSource = list;
+            ReportPrintTool printTool = new ReportPrintTool(report);
+            printTool.ShowPreview();
         }
     }
 }
