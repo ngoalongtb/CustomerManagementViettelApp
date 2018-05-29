@@ -86,9 +86,9 @@
             this.label7.ForeColor = System.Drawing.Color.Aqua;
             this.label7.Location = new System.Drawing.Point(520, 233);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(102, 23);
+            this.label7.Size = new System.Drawing.Size(163, 23);
             this.label7.TabIndex = 0;
-            this.label7.Text = "Cô giáo: ???";
+            this.label7.Text = "Cô giáo: Bùi Thị Như";
             // 
             // label3
             // 

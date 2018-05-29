@@ -39,7 +39,15 @@ namespace CustomerManagementViettelApp
                 if(loginAccount.ThongTinTaiKhoan.HinhAnh != null)
                 {
                     pnHinhAnh.BackgroundImageLayout = ImageLayout.Stretch;
-                    pnHinhAnh.BackgroundImage = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + loginAccount.TenTaiKhoan + loginAccount.ThongTinTaiKhoan.HinhAnh);
+                    try
+                    {
+                        pnHinhAnh.BackgroundImage = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + loginAccount.TenTaiKhoan + loginAccount.ThongTinTaiKhoan.HinhAnh);
+                    }
+                    catch (Exception)
+                    {
+
+                        
+                    }   
                 }
                 if(loginAccount.ThongTinTaiKhoan.NgaySinh != null)
                 {
