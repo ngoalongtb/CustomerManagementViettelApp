@@ -66,7 +66,6 @@ namespace CustomerManagementViettelApp
 
         public void HideColumn()
         {
-            dtgv.Columns["MoTa"].Visible = false;
             dtgv.Columns["MaDanhMuc"].Visible = false;
             dtgv.Columns["x"].Visible = false;
         }

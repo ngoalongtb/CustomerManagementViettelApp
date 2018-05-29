@@ -8,8 +8,8 @@ namespace CustomerManagementViettelApp.App_Code
 {
     public class Commons
     {
-        public static string ADMIN = "admin";
-        public static string MEMBER = "member";
-        public static string VIP = "vip";
+        public static string Manager = "Quản lý";
+        public static string Admin = "Quản trị";
+        public static string Customer = "Khách hàng";
     }
 }

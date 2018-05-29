@@ -129,10 +129,9 @@
             this.pnAdmin.Controls.Add(this.btnDichVu);
             this.pnAdmin.Controls.Add(this.btnDanhMuc);
             this.pnAdmin.Controls.Add(this.btnLoaiTaiKhoan);
-            this.pnAdmin.Controls.Add(this.btnTaiKhoan);
-            this.pnAdmin.Location = new System.Drawing.Point(6, 273);
+            this.pnAdmin.Location = new System.Drawing.Point(6, 302);
             this.pnAdmin.Name = "pnAdmin";
-            this.pnAdmin.Size = new System.Drawing.Size(203, 311);
+            this.pnAdmin.Size = new System.Drawing.Size(203, 282);
             this.pnAdmin.TabIndex = 1;
             // 
             // btnThongKe
@@ -141,7 +140,7 @@
             this.btnThongKe.FlatAppearance.BorderSize = 0;
             this.btnThongKe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThongKe.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThongKe.Location = new System.Drawing.Point(27, 241);
+            this.btnThongKe.Location = new System.Drawing.Point(27, 204);
             this.btnThongKe.Name = "btnThongKe";
             this.btnThongKe.Size = new System.Drawing.Size(155, 42);
             this.btnThongKe.TabIndex = 0;
@@ -155,7 +154,7 @@
             this.btnDichVu.FlatAppearance.BorderSize = 0;
             this.btnDichVu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDichVu.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDichVu.Location = new System.Drawing.Point(27, 73);
+            this.btnDichVu.Location = new System.Drawing.Point(27, 78);
             this.btnDichVu.Name = "btnDichVu";
             this.btnDichVu.Size = new System.Drawing.Size(155, 42);
             this.btnDichVu.TabIndex = 0;
@@ -183,7 +182,7 @@
             this.btnLoaiTaiKhoan.FlatAppearance.BorderSize = 0;
             this.btnLoaiTaiKhoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoaiTaiKhoan.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoaiTaiKhoan.Location = new System.Drawing.Point(26, 185);
+            this.btnLoaiTaiKhoan.Location = new System.Drawing.Point(27, 140);
             this.btnLoaiTaiKhoan.Name = "btnLoaiTaiKhoan";
             this.btnLoaiTaiKhoan.Size = new System.Drawing.Size(155, 42);
             this.btnLoaiTaiKhoan.TabIndex = 0;
@@ -197,7 +196,7 @@
             this.btnTaiKhoan.FlatAppearance.BorderSize = 0;
             this.btnTaiKhoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTaiKhoan.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTaiKhoan.Location = new System.Drawing.Point(27, 129);
+            this.btnTaiKhoan.Location = new System.Drawing.Point(33, 254);
             this.btnTaiKhoan.Name = "btnTaiKhoan";
             this.btnTaiKhoan.Size = new System.Drawing.Size(155, 42);
             this.btnTaiKhoan.TabIndex = 0;
@@ -289,6 +288,7 @@
             this.panel1.Controls.Add(this.btnThongTinCaNhan);
             this.panel1.Controls.Add(this.btnDangKy);
             this.panel1.Controls.Add(this.btnDangXuat);
+            this.panel1.Controls.Add(this.btnTaiKhoan);
             this.panel1.Controls.Add(this.btnMayTinh);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 54);

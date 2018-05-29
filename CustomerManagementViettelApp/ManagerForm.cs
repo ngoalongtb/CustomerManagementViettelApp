@@ -82,9 +82,14 @@ namespace CustomerManagementViettelApp
 
         private void ManagerForm_Load(object sender, EventArgs e)
         {
-            if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan != Commons.ADMIN)
+            if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan != Commons.Manager)
             {
                 pnAdmin.Visible = false;
+            }
+
+            if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Customer)
+            {
+                btnTaiKhoan.Visible = false;
             }
         }
 

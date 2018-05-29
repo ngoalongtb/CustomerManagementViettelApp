@@ -31,6 +31,18 @@ namespace CustomerManagementViettelApp
             HideColumn();
             LoadDataBinding();
             LoadMore();
+            LoadInfo();
+        }
+
+        public void LoadInfo()
+        {
+            if(taiKhoan.ThongTinTaiKhoan != null)
+            {
+                lblHoTen.Text = taiKhoan.ThongTinTaiKhoan.HoTen;
+                lblSoDienThoai.Text = taiKhoan.ThongTinTaiKhoan.SoDienThoai;
+                lblEmail.Text = taiKhoan.ThongTinTaiKhoan.Email;
+            }
+            
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
