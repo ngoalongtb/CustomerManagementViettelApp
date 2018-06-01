@@ -58,6 +58,7 @@
           <Property Name="DienThoai" Type="nvarchar" MaxLength="255" />
           <Property Name="MaSoThue" Type="nvarchar" MaxLength="255" />
           <Property Name="NhanVien" Type="varchar" MaxLength="255" />
+          <Property Name="NgayTao" Type="datetime" />
         </EntityType>
         <EntityType Name="LoaiTaiKhoan">
           <Key>
@@ -252,7 +253,7 @@
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
             <End Role="HopDong" EntitySet="HopDongs" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -398,6 +399,7 @@
           <Property Name="NhanVien" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ChiTietHopDongs" Relationship="CustomerManagementAppModel.FK__ChiTietHo__MaHop__5FB337D6" FromRole="HopDong" ToRole="ChiTietHopDong" />
           <NavigationProperty Name="TaiKhoan" Relationship="CustomerManagementAppModel.FK__HopDong__NhanVie__5CD6CB2B" FromRole="HopDong" ToRole="TaiKhoan" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK__ChiTietHo__MaDic__60A75C0F">
           <End Type="CustomerManagementAppModel.DichVu" Role="DichVu" Multiplicity="0..1">
@@ -441,7 +443,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -526,6 +528,7 @@
           <EntitySetMapping Name="HopDongs">
             <EntityTypeMapping TypeName="CustomerManagementAppModel.HopDong">
               <MappingFragment StoreEntitySet="HopDong">
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="NhanVien" ColumnName="NhanVien" />
                 <ScalarProperty Name="MaSoThue" ColumnName="MaSoThue" />
                 <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />

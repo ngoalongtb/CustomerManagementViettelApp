@@ -19,7 +19,7 @@
         <AssociationConnector Association="CustomerManagementAppModel.FK__ChiTietHo__MaDic__60A75C0F" />
         <AssociationConnector Association="CustomerManagementAppModel.FK__ChiTietHo__MaHop__5FB337D6" />
         <AssociationConnector Association="CustomerManagementAppModel.FK__HopDong__NhanVie__5CD6CB2B" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

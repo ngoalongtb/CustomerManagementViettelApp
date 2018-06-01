@@ -101,6 +101,12 @@
     <Compile Include="DanhMucUC.Designer.cs">
       <DependentUpon>DanhMucUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="DanhSachHopDongUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DanhSachHopDongUC.Designer.cs">
+      <DependentUpon>DanhSachHopDongUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="DichVuUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -198,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DanhMucUC.resx">
       <DependentUpon>DanhMucUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DanhSachHopDongUC.resx">
+      <DependentUpon>DanhSachHopDongUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DichVuUC.resx">
       <DependentUpon>DichVuUC.cs</DependentUpon>

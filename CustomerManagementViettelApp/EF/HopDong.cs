@@ -38,6 +38,7 @@ namespace CustomerManagementViettelApp.EF
         public string DienThoai { get; set; }
         public string MaSoThue { get; set; }
         public string NhanVien { get; set; }
+        public Nullable<System.DateTime> NgayTao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHopDong> ChiTietHopDongs { get; set; }

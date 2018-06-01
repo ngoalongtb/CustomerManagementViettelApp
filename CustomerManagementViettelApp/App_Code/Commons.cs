@@ -10,6 +10,6 @@ namespace CustomerManagementViettelApp.App_Code
     {
         public static string Manager = "Quản lý";
         public static string Admin = "Quản trị";
-        public static string Customer = "Khách hàng";
+        public static string Staff = "Nhân viên";
     }
 }
