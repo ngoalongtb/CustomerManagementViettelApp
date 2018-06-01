@@ -12,15 +12,15 @@ namespace CustomerManagementViettelApp.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class LichSuDangKy
+    public partial class ChiTietHopDong
     {
-        public int Ma { get; set; }
+        public int MaChiTietHopDong { get; set; }
         public Nullable<int> MaDichVu { get; set; }
-        public Nullable<double> Gia { get; set; }
-        public string TenTaiKhoan { get; set; }
-        public Nullable<System.DateTime> NgayTao { get; set; }
+        public string GhiChu { get; set; }
+        public string DiaChiLapDat { get; set; }
+        public Nullable<int> MaHopDong { get; set; }
     
         public virtual DichVu DichVu { get; set; }
-        public virtual TaiKhoan TaiKhoan { get; set; }
+        public virtual HopDong HopDong { get; set; }
     }
 }

@@ -135,10 +135,10 @@ namespace CustomerManagementViettelApp
 
         private void btnMayTinh_Click(object sender, EventArgs e)
         {
-            LichSuUC f = new LichSuUC();
-            pnContent.Controls.Clear();
-            pnContent.Controls.Add(f);
-            f.Show();
+            //LichSuUC f = new LichSuUC();
+            //pnContent.Controls.Clear();
+            //pnContent.Controls.Add(f);
+            //f.Show();
         }
 
         private void btnDangKy_Click(object sender, EventArgs e)
@@ -168,10 +168,10 @@ namespace CustomerManagementViettelApp
 
         public void Trigger()
         {
-            DKDichVuUC f = new DKDichVuUC(Session.TaiKhoanQLDV);
-            pnContent.Controls.Clear();
-            pnContent.Controls.Add(f);
-            f.Show();
+            //DKDichVuUC f = new DKDichVuUC(Session.TaiKhoanQLDV);
+            //pnContent.Controls.Clear();
+            //pnContent.Controls.Add(f);
+            //f.Show();
         }
     }
 }

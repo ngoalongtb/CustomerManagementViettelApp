@@ -95,7 +95,6 @@
             this.btnTatCa.TabIndex = 47;
             this.btnTatCa.Text = "Tất cả";
             this.btnTatCa.UseVisualStyleBackColor = false;
-            this.btnTatCa.Click += new System.EventHandler(this.btnTatCa_Click);
             // 
             // DangKyUC
             // 

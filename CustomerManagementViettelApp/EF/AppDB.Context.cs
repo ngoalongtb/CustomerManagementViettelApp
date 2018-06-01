@@ -28,10 +28,10 @@ namespace CustomerManagementViettelApp.EF
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<DanhMuc> DanhMucs { get; set; }
         public virtual DbSet<DichVu> DichVus { get; set; }
-        public virtual DbSet<LichSuDangKy> LichSuDangKies { get; set; }
         public virtual DbSet<LoaiTaiKhoan> LoaiTaiKhoans { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
-        public virtual DbSet<TaiKhoanDichVu> TaiKhoanDichVus { get; set; }
         public virtual DbSet<ThongTinTaiKhoan> ThongTinTaiKhoans { get; set; }
+        public virtual DbSet<ChiTietHopDong> ChiTietHopDongs { get; set; }
+        public virtual DbSet<HopDong> HopDongs { get; set; }
     }
 }

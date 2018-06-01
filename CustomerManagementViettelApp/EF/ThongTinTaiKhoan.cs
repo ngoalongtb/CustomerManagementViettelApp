@@ -20,7 +20,6 @@ namespace CustomerManagementViettelApp.EF
         public string SoDienThoai { get; set; }
         public string HinhAnh { get; set; }
         public string Email { get; set; }
-        public Nullable<double> Tien { get; set; }
     
         public virtual TaiKhoan TaiKhoan { get; set; }
     }

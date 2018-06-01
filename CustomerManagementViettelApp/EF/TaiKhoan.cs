@@ -17,8 +17,7 @@ namespace CustomerManagementViettelApp.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TaiKhoan()
         {
-            this.LichSuDangKies = new HashSet<LichSuDangKy>();
-            this.TaiKhoanDichVus = new HashSet<TaiKhoanDichVu>();
+            this.HopDongs = new HashSet<HopDong>();
         }
     
         public string TenTaiKhoan { get; set; }
@@ -27,11 +26,9 @@ namespace CustomerManagementViettelApp.EF
         public Nullable<int> MaLoaiTaiKhoan { get; set; }
         public Nullable<System.DateTime> NgayTao { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LichSuDangKy> LichSuDangKies { get; set; }
         public virtual LoaiTaiKhoan LoaiTaiKhoan { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TaiKhoanDichVu> TaiKhoanDichVus { get; set; }
         public virtual ThongTinTaiKhoan ThongTinTaiKhoan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HopDong> HopDongs { get; set; }
     }
 }

@@ -42,12 +42,12 @@ namespace CustomerManagementViettelApp
 
         public void LoadDtgv()
         {
-            bds.DataSource = db.LichSuDangKies.Where(u => u.NgayTao >= dtpkFrom.Value && u.NgayTao <= dtpkTo.Value).GroupBy(u => u.DichVu).Select(x => new { x.Key.MaDichVu, TenDichVu=x.Key.TenDichVu, Count = x.Count() }).ToList();
+            //bds.DataSource = db.LichSuDangKies.Where(u => u.NgayTao >= dtpkFrom.Value && u.NgayTao <= dtpkTo.Value).GroupBy(u => u.DichVu).Select(x => new { x.Key.MaDichVu, TenDichVu=x.Key.TenDichVu, Count = x.Count() }).ToList();
         }
 
         public void CalculateMoney()
         {
-            lblTongTien.Text = db.LichSuDangKies.Where(u => u.NgayTao >= dtpkFrom.Value && u.NgayTao <= dtpkTo.Value).Sum(x => x.Gia).ToString();
+            //lblTongTien.Text = db.LichSuDangKies.Where(u => u.NgayTao >= dtpkFrom.Value && u.NgayTao <= dtpkTo.Value).Sum(x => x.Gia).ToString();
         }
 
         public void ChangHeader()
@@ -96,23 +96,23 @@ namespace CustomerManagementViettelApp
             List<ReportItem> list = new List<ReportItem>();
             
 
-            var temp = db.LichSuDangKies.Where(u => u.NgayTao >= dtpkFrom.Value && u.NgayTao <= dtpkTo.Value).GroupBy(u => u.DichVu).Select(x => new { x.Key.MaDichVu, TenDichVu = x.Key.TenDichVu, Count = x.Count() }).ToList();
+            //var temp = db.LichSuDangKies.Where(u => u.NgayTao >= dtpkFrom.Value && u.NgayTao <= dtpkTo.Value).GroupBy(u => u.DichVu).Select(x => new { x.Key.MaDichVu, TenDichVu = x.Key.TenDichVu, Count = x.Count() }).ToList();
             
-            foreach (var item in temp)
-            {
-                ReportItem reportItem = new ReportItem();
-                reportItem.MaDichVu = item.MaDichVu.ToString();
-                reportItem.SoLuotDangKy = item.Count.ToString();
-                reportItem.TenDichVu = item.TenDichVu;
-                list.Add(reportItem);
-            }
+            //foreach (var item in temp)
+            //{
+            //    ReportItem reportItem = new ReportItem();
+            //    reportItem.MaDichVu = item.MaDichVu.ToString();
+            //    reportItem.SoLuotDangKy = item.Count.ToString();
+            //    reportItem.TenDichVu = item.TenDichVu;
+            //    list.Add(reportItem);
+            //}
 
             double total = 0;
-            var temp2 = db.LichSuDangKies.Where(u => u.NgayTao >= dtpkFrom.Value && u.NgayTao <= dtpkTo.Value).ToList();
-            foreach (var item in temp2)
-            {
-                total += item.Gia.Value;
-            }
+            //var temp2 = db.LichSuDangKies.Where(u => u.NgayTao >= dtpkFrom.Value && u.NgayTao <= dtpkTo.Value).ToList();
+            //foreach (var item in temp2)
+            //{
+            //    total += item.Gia.Value;
+            //}
 
             reportModel.Total = total.ToString();
             XtraReport1 report = new XtraReport1(reportModel);
