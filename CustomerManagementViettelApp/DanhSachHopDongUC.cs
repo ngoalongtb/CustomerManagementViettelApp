@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CustomerManagementViettelApp.EF;
 using CustomerManagementViettelApp.App_Code;
+using CustomerManagementViettelApp.Report;
+using DevExpress.XtraReports.UI;
 
 namespace CustomerManagementViettelApp
 {
@@ -70,7 +72,11 @@ namespace CustomerManagementViettelApp
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            
+            HopDong hopDong = db.HopDongs.Find(int.Parse(lblMaHopDong.Text));
+            HopDongReport report = new HopDongReport(hopDong);
+            ReportPrintTool printTool = new ReportPrintTool(report);
+            printTool.ShowPreview();
+
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
