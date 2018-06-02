@@ -95,14 +95,31 @@ namespace CustomerManagementViettelApp
 
         private void ManagerForm_Load(object sender, EventArgs e)
         {
-            if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan != Commons.Manager)
+            if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Manager)
             {
-                pnAdmin.Visible = false;
+                
+            }
+
+            if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Admin)
+            {
+                btnDangKy.Visible = false;
+                btnHopDong.Visible = false;
+                //btnTaiKhoan.Visible = false;
+                btnDanhMuc.Visible = false;
+                btnDichVu.Visible = false;
+                //btnLoaiTaiKhoan.Visible = false;
+                btnThongKe.Visible = false;
             }
 
             if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Staff)
             {
-                btnTaiKhoan.Visible = false;
+                btnDangKy.Visible = false;
+                btnHopDong.Visible = false;
+                //btnTaiKhoan.Visible = false;
+                //btnDanhMuc.Visible = false;
+                btnDichVu.Visible = false;
+                //btnLoaiTaiKhoan.Visible = false;
+                //btnThongKe.Visible = false;
             }
         }
 
