@@ -59,7 +59,15 @@ namespace CustomerManagementViettelApp.Components
             if (service.HinhAnh != null)
             {
                 string directory = AppDomain.CurrentDomain.BaseDirectory;
-                panel1.BackgroundImage = Image.FromFile(directory + service.MaDichVu + service.HinhAnh);
+                try
+                {
+                    panel1.BackgroundImage = Image.FromFile(directory + service.MaDichVu + service.HinhAnh);
+                }
+                catch (Exception)
+                {
+                    
+                }
+                
             }
             
             
