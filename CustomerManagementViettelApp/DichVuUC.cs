@@ -132,17 +132,24 @@ namespace CustomerManagementViettelApp
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            try
+            var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn xóa",
+                                     "Xác nhận!!",
+                                     MessageBoxButtons.YesNo);
+
+            if (confirmResult == DialogResult.Yes)
             {
-                DichVu service = db.DichVus.Find(int.Parse(txtMaDichVu.Text));
-                db.DichVus.Remove(service);
-                db.SaveChanges();
-                MessageBox.Show("Xóa thành công");
-                LoadDtgv();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Tồn tại Máy tính trong danh mục này");
+                try
+                {
+                    DichVu service = db.DichVus.Find(int.Parse(txtMaDichVu.Text));
+                    db.DichVus.Remove(service);
+                    db.SaveChanges();
+                    MessageBox.Show("Xóa thành công");
+                    LoadDtgv();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Tồn tại Máy tính trong danh mục này");
+                }
             }
         }
 

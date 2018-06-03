@@ -6,21 +6,20 @@
     <edmx:Diagrams>
       <Diagram DiagramId="8613c99520704603b6456bb6eccc2c5c" Name="Diagram1">
         <EntityTypeShape EntityType="CustomerManagementAppModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CustomerManagementAppModel.DanhMuc" Width="1.5" PointX="0.75" PointY="2.75" />
+        <EntityTypeShape EntityType="CustomerManagementAppModel.DanhMuc" Width="1.5" PointX="0.5" PointY="3.25" />
         <EntityTypeShape EntityType="CustomerManagementAppModel.DichVu" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="CustomerManagementAppModel.LichSuDangKy" Width="1.5" PointX="5.25" PointY="2" />
         <EntityTypeShape EntityType="CustomerManagementAppModel.LoaiTaiKhoan" Width="1.5" PointX="0.75" PointY="5.375" />
         <EntityTypeShape EntityType="CustomerManagementAppModel.TaiKhoan" Width="1.5" PointX="3" PointY="4.875" />
-        <EntityTypeShape EntityType="CustomerManagementAppModel.TaiKhoanDichVu" Width="1.5" PointX="5.25" PointY="5.25" />
         <EntityTypeShape EntityType="CustomerManagementAppModel.ThongTinTaiKhoan" Width="1.5" PointX="5.25" PointY="10.875" />
         <AssociationConnector Association="CustomerManagementAppModel.FK__DichVu__MaDanhMu__1DE57479" />
-        <AssociationConnector Association="CustomerManagementAppModel.FK__LichSuDan__MaDic__36B12243" />
-        <AssociationConnector Association="CustomerManagementAppModel.FK__TaiKhoanD__MaDic__1ED998B2" />
-        <AssociationConnector Association="CustomerManagementAppModel.FK__LichSuDan__TenTa__37A5467C" />
         <AssociationConnector Association="CustomerManagementAppModel.FK__TaiKhoan__MaLoai__1BFD2C07" />
-        <AssociationConnector Association="CustomerManagementAppModel.FK__TaiKhoanD__TenTa__1FCDBCEB" />
         <AssociationConnector Association="CustomerManagementAppModel.FK__ThongTinT__TenTa__1CF15040" />
-      </Diagram>
+        <EntityTypeShape EntityType="CustomerManagementAppModel.ChiTietHopDong" Width="1.5" PointX="7.5" PointY="9.125" />
+        <EntityTypeShape EntityType="CustomerManagementAppModel.HopDong" Width="1.5" PointX="5.25" PointY="14.875" />
+        <AssociationConnector Association="CustomerManagementAppModel.FK__ChiTietHo__MaDic__60A75C0F" />
+        <AssociationConnector Association="CustomerManagementAppModel.FK__ChiTietHo__MaHop__5FB337D6" />
+        <AssociationConnector Association="CustomerManagementAppModel.FK__HopDong__NhanVie__5CD6CB2B" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

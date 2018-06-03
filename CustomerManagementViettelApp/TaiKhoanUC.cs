@@ -104,17 +104,24 @@ namespace CustomerManagementViettelApp
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            TaiKhoan account = db.TaiKhoans.Find(txtUsername.Text);
-            try
+            var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn xóa",
+                                     "Xác nhận!!",
+                                     MessageBoxButtons.YesNo);
+
+            if (confirmResult == DialogResult.Yes)
             {
-                db.TaiKhoans.Remove(account);
-                db.SaveChanges();
-                MessageBox.Show("Xóa thành công");
-                LoadDtgv();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Không thể xóa! Có lỗi xảy ra");
+                TaiKhoan account = db.TaiKhoans.Find(txtUsername.Text);
+                try
+                {
+                    db.TaiKhoans.Remove(account);
+                    db.SaveChanges();
+                    MessageBox.Show("Xóa thành công");
+                    LoadDtgv();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Không thể xóa! Có lỗi xảy ra");
+                }
             }
         }
 
@@ -127,12 +134,6 @@ namespace CustomerManagementViettelApp
         {
             bds.DataSource = db.TaiKhoans.Where(x => x.TenHienThi.ToString().Contains(txtTimKiem.Text) 
             || x.TenTaiKhoan.Contains(txtTimKiem.Text) || x.LoaiTaiKhoan.TenLoaiTaiKhoan.Contains(txtTimKiem.Text)).ToList();
-        }
-
-        private void btnQLDichVu_Click(object sender, EventArgs e)
-        {
-            Session.TaiKhoanQLDV = db.TaiKhoans.Find(txtUsername.Text);
-            AppState.ManagerForm.Trigger();
         }
     }
 }

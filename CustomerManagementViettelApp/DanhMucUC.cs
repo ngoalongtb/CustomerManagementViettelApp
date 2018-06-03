@@ -85,18 +85,25 @@ namespace CustomerManagementViettelApp
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            DanhMuc category = db.DanhMucs.Find(txtId.Text);
+            var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn xóa",
+                                     "Xác nhận!!",
+                                     MessageBoxButtons.YesNo);
 
-            try
+            if (confirmResult == DialogResult.Yes)
             {
-                db.DanhMucs.Remove(category);
-                db.SaveChanges();
-                MessageBox.Show("Xóa thành công");
-                LoadDtgv();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Không thể xóa");
+                DanhMuc category = db.DanhMucs.Find(txtId.Text);
+
+                try
+                {
+                    db.DanhMucs.Remove(category);
+                    db.SaveChanges();
+                    MessageBox.Show("Xóa thành công");
+                    LoadDtgv();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Không thể xóa");
+                }
             }
         }
 

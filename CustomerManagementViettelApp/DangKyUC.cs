@@ -16,97 +16,105 @@ namespace CustomerManagementViettelApp
     public partial class DangKyUC : UserControl, Triggerable
     {
         private AppDB db = new AppDB();
+        private BindingSource bds = new BindingSource();
+        private List<ChiTietHopDong> chiTietHopDongs = new List<ChiTietHopDong>();
+
         public DangKyUC()
         {
             InitializeComponent();
         }
 
+
+        public void LoadDtgv()
+        {
+            bds.DataSource = chiTietHopDongs.Select(x => new { x.DichVu.MaDichVu, x.DichVu.TenDichVu, x.DiaChiLapDat, x.GhiChu }).ToList();
+        }
+        public void ChangHeader()
+        {
+            dtgv.Columns["MaDichVu"].HeaderText = "Mã danh mục";
+            dtgv.Columns["TenDichVu"].HeaderText = "Tên dịch vụ";
+            dtgv.Columns["DiaChiLapDat"].HeaderText = "Địa chỉ lắp đặt";
+            dtgv.Columns["GhiChu"].HeaderText = "Ghi chú";
+        }
+
         private void DangKyUC_Load(object sender, EventArgs e)
         {
-            LoadDichVu();
-            LoadDichVuDaDangKy();
-            LoadDanhMuc();
-            AppState.DangKyUC = this;
+            lblNgay.Text = DateTime.Now.ToShortDateString();
+            LoadDtgv();
+            dtgv.DataSource = bds;
+            ChangHeader();
+            LoadMore();
         }
 
-        public void LoadDichVu()
+        public void LoadMore()
         {
+            var source = new AutoCompleteStringCollection();
             List<DichVu> dichVus = db.DichVus.ToList();
-            pnDichVu.Controls.Clear();
             foreach (var item in dichVus)
             {
-                DichVuComponent dichVuComponent = new DichVuComponent(item);
-                pnDichVu.Controls.Add(dichVuComponent);
-                dichVuComponent.Show();
+                source.Add(item.MaDichVu + " - " + item.TenDichVu);
             }
+            txtMaDichVu.AutoCompleteCustomSource = source;
+
         }
 
-        public void LoadDichVuDaDangKy()
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            List<TaiKhoanDichVu> dichVus = db.TaiKhoanDichVus.Where(x=>x.TenTaiKhoan == Session.LoginAccount.TenTaiKhoan).ToList();
-            foreach (var item in dichVus)
+            try
             {
-                DichVuComponent dichVuComponent = new DichVuComponent(item.DichVu, true);
-                pnDichVuDaDangKy.Controls.Add(dichVuComponent);
-                dichVuComponent.Show();
+                HopDong hopDong = new HopDong();
+                hopDong.NgayTao = DateTime.Now;
+                hopDong.HoTen = txtHoTen.Text;
+                hopDong.ChucVu = txtChucVu.Text;
+                hopDong.NgaySinh = dtpkNgaySinh.Value;
+                hopDong.NgayCap = dtpkNgayCap.Value;
+                hopDong.GioiTinh = cbxGioiTinh.Text == "Nam" ? false : true;
+                hopDong.Cmtnd = txtCmtnd.Text;
+                hopDong.NoiCap = txtNoiCap.Text;
+                hopDong.SoNha = txtSoNha.Text;
+                hopDong.Duong = txtDuong.Text;
+                hopDong.To = txtTo.Text;
+                hopDong.Quan = txtQuan.Text;
+                hopDong.Phuong = txtPhuongXa.Text;
+                hopDong.Tinh = txtTinh.Text;
+                hopDong.MaSoThue = txtMaSoThue.Text;
+                hopDong.NhanVien = Session.LoginAccount.TenTaiKhoan;
+                hopDong.DienThoai = txtDienThoai.Text;
+                hopDong.ChiTietHopDongs = chiTietHopDongs;
+                db.HopDongs.Add(hopDong);
+                db.SaveChanges();
             }
-        }
-
-        public void LoadDanhMuc()
-        {
-            List<DanhMuc> danhMucs = db.DanhMucs.ToList();
-            foreach (var item in danhMucs)
+            catch (Exception)
             {
-                Button btn = CreateButton(item);
-                btn.Show();
-                pnDanhMuc.Controls.Add(btn);
+                MessageBox.Show("Có lỗi xảy ra!!! Vui lòng kiểm tra lại !!!");
             }
-        }
-
-        public Button CreateButton(DanhMuc danhMuc)
-        {
-            Button btn = new Button();
-            btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
-            btn.FlatAppearance.BorderSize = 0;
-            btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btn.Font = new System.Drawing.Font("Calibri", 12F);
-            btn.ForeColor = System.Drawing.Color.White;
-            btn.Name = "btnDanhMuc_" + danhMuc.MaDanhMuc;
-            btn.Height = 27;
-            btn.AutoSize = true;
-            btn.TabIndex = 47;
-            btn.Text = danhMuc.TenDanhMuc;
-            btn.Tag = danhMuc;
-            btn.UseVisualStyleBackColor = false;
-            btn.Click += btnDanhMuc_Click;
-
-            return btn;
-        }
-
-        private void btnDanhMuc_Click(object sender, EventArgs e)
-        {
-            DanhMuc danhMuc = (DanhMuc)((sender as Button).Tag);
-            pnDichVu.Controls.Clear();
-            List<DichVu> dichVus = db.DichVus.Where(x => x.MaDanhMuc == danhMuc.MaDanhMuc).ToList();
-            foreach (var item in dichVus)
-            {
-                DichVuComponent dichVuComponent = new DichVuComponent(item);
-                pnDichVu.Controls.Add(dichVuComponent);
-                dichVuComponent.Show();
-            }
+            
         }
 
         public void Trigger()
         {
-            pnDichVuDaDangKy.Controls.Clear();
-            pnDichVu.Controls.Clear();
-            LoadDichVu();
-            LoadDichVuDaDangKy();
+
         }
 
-        private void btnTatCa_Click(object sender, EventArgs e)
+        private void btnThemDichVu_Click(object sender, EventArgs e)
         {
-            LoadDichVu();
+            try
+            {
+                ChiTietHopDong chiTietHopDong = new ChiTietHopDong();
+                DichVu dichVu = db.DichVus.Find(int.Parse(txtMaDichVu.Text.Split('-')[0]));
+                chiTietHopDong.GhiChu = txtGhiChu.Text;
+                chiTietHopDong.DiaChiLapDat = txtDiaChiLapDat.Text;
+                chiTietHopDong.DichVu = dichVu;
+                chiTietHopDongs.Add(chiTietHopDong);
+                LoadDtgv();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Không thể thêm");
+            }
+            
+
         }
     }
 }

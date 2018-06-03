@@ -47,7 +47,7 @@
             this.btnDangKy = new System.Windows.Forms.Button();
             this.btnThongTinCaNhan = new System.Windows.Forms.Button();
             this.btnDangXuat = new System.Windows.Forms.Button();
-            this.btnMayTinh = new System.Windows.Forms.Button();
+            this.btnHopDong = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl = new System.Windows.Forms.Label();
@@ -267,19 +267,19 @@
             this.btnDangXuat.UseVisualStyleBackColor = false;
             this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click);
             // 
-            // btnMayTinh
+            // btnHopDong
             // 
-            this.btnMayTinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
-            this.btnMayTinh.FlatAppearance.BorderSize = 0;
-            this.btnMayTinh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMayTinh.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMayTinh.Location = new System.Drawing.Point(30, 186);
-            this.btnMayTinh.Name = "btnMayTinh";
-            this.btnMayTinh.Size = new System.Drawing.Size(155, 42);
-            this.btnMayTinh.TabIndex = 0;
-            this.btnMayTinh.Text = "Lịch Sử";
-            this.btnMayTinh.UseVisualStyleBackColor = false;
-            this.btnMayTinh.Click += new System.EventHandler(this.btnMayTinh_Click);
+            this.btnHopDong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
+            this.btnHopDong.FlatAppearance.BorderSize = 0;
+            this.btnHopDong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHopDong.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHopDong.Location = new System.Drawing.Point(30, 186);
+            this.btnHopDong.Name = "btnHopDong";
+            this.btnHopDong.Size = new System.Drawing.Size(155, 42);
+            this.btnHopDong.TabIndex = 0;
+            this.btnHopDong.Text = "Hợp đồng";
+            this.btnHopDong.UseVisualStyleBackColor = false;
+            this.btnHopDong.Click += new System.EventHandler(this.btnHopDong_Click);
             // 
             // panel1
             // 
@@ -289,7 +289,7 @@
             this.panel1.Controls.Add(this.btnDangKy);
             this.panel1.Controls.Add(this.btnDangXuat);
             this.panel1.Controls.Add(this.btnTaiKhoan);
-            this.panel1.Controls.Add(this.btnMayTinh);
+            this.panel1.Controls.Add(this.btnHopDong);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 54);
             this.panel1.Name = "panel1";
@@ -440,7 +440,7 @@
         private System.Windows.Forms.Button btnLoaiTaiKhoan;
         private System.Windows.Forms.Button btnThongTinCaNhan;
         private System.Windows.Forms.Button btnDangXuat;
-        private System.Windows.Forms.Button btnMayTinh;
+        private System.Windows.Forms.Button btnHopDong;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lbl;

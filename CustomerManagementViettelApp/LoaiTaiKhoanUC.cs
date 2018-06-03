@@ -78,18 +78,25 @@ namespace CustomerManagementViettelApp
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            LoaiTaiKhoan accountType = db.LoaiTaiKhoans.Find(int.Parse(txtId.Text));
+            var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn xóa",
+                                     "Xác nhận!!",
+                                     MessageBoxButtons.YesNo);
 
-            try
+            if (confirmResult == DialogResult.Yes)
             {
-                db.LoaiTaiKhoans.Remove(accountType);
-                db.SaveChanges();
-                MessageBox.Show("Xóa thành công");
-                LoadDtgv();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Tồn tại Máy tính trong danh mục này");
+                LoaiTaiKhoan accountType = db.LoaiTaiKhoans.Find(int.Parse(txtId.Text));
+
+                try
+                {
+                    db.LoaiTaiKhoans.Remove(accountType);
+                    db.SaveChanges();
+                    MessageBox.Show("Xóa thành công");
+                    LoadDtgv();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Tồn tại Máy tính trong danh mục này");
+                }
             }
         }
 

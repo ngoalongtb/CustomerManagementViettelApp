@@ -51,8 +51,6 @@
             this.dtpkNgaySinh = new System.Windows.Forms.DateTimePicker();
             this.btnUploadImage = new System.Windows.Forms.Button();
             this.pnHinhAnh = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lblTien = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnUpdateInfo
@@ -265,35 +263,11 @@
             this.pnHinhAnh.Size = new System.Drawing.Size(141, 164);
             this.pnHinhAnh.TabIndex = 48;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label11.Location = new System.Drawing.Point(278, 90);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(60, 19);
-            this.label11.TabIndex = 49;
-            this.label11.Text = "Số Tiền:";
-            // 
-            // lblTien
-            // 
-            this.lblTien.AutoSize = true;
-            this.lblTien.BackColor = System.Drawing.Color.Transparent;
-            this.lblTien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblTien.Location = new System.Drawing.Point(344, 90);
-            this.lblTien.Name = "lblTien";
-            this.lblTien.Size = new System.Drawing.Size(60, 19);
-            this.lblTien.TabIndex = 49;
-            this.lblTien.Text = "Số Tiền:";
-            // 
             // pn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.Controls.Add(this.lblTien);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.pnHinhAnh);
             this.Controls.Add(this.btnUploadImage);
             this.Controls.Add(this.dtpkNgaySinh);
@@ -351,7 +325,5 @@
         private System.Windows.Forms.DateTimePicker dtpkNgaySinh;
         private System.Windows.Forms.Button btnUploadImage;
         private System.Windows.Forms.Panel pnHinhAnh;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label lblTien;
     }
 }

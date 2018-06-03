@@ -35,7 +35,6 @@ namespace CustomerManagementViettelApp
                 txtHinhAnh.Text = loginAccount.ThongTinTaiKhoan.HinhAnh;
                 txtEmail.Text = loginAccount.ThongTinTaiKhoan.Email;
                 txtSoDienThoai.Text = loginAccount.ThongTinTaiKhoan.SoDienThoai;
-                lblTien.Text = loginAccount.ThongTinTaiKhoan.Tien.ToString();
                 if(loginAccount.ThongTinTaiKhoan.HinhAnh != null)
                 {
                     pnHinhAnh.BackgroundImageLayout = ImageLayout.Stretch;

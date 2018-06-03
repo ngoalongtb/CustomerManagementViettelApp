@@ -74,6 +74,19 @@ namespace CustomerManagementViettelApp
             this.Close();
         }
         #endregion
+
+        private void ClearAllActiveButton()
+        {
+            btnThongTinCaNhan.BackColor = Color.FromArgb(21, 21, 21);
+            btnDangKy.BackColor = Color.FromArgb(21, 21, 21);
+            btnHopDong.BackColor = Color.FromArgb(21, 21, 21);
+            btnTaiKhoan.BackColor = Color.FromArgb(21, 21, 21);
+            btnDanhMuc.BackColor = Color.FromArgb(21, 21, 21);
+            btnDichVu.BackColor = Color.FromArgb(21, 21, 21);
+            btnLoaiTaiKhoan.BackColor = Color.FromArgb(21, 21, 21);
+            btnThongKe.BackColor = Color.FromArgb(21, 21, 21);
+        }
+
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
             Session.LoginAccount = null;
@@ -82,19 +95,38 @@ namespace CustomerManagementViettelApp
 
         private void ManagerForm_Load(object sender, EventArgs e)
         {
-            if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan != Commons.Manager)
+            if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Manager)
             {
-                pnAdmin.Visible = false;
+                
             }
 
-            if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Customer)
+            if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Admin)
             {
-                btnTaiKhoan.Visible = false;
+                btnDangKy.Visible = false;
+                btnHopDong.Visible = false;
+                //btnTaiKhoan.Visible = false;
+                btnDanhMuc.Visible = false;
+                btnDichVu.Visible = false;
+                //btnLoaiTaiKhoan.Visible = false;
+                btnThongKe.Visible = false;
+            }
+
+            if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Staff)
+            {
+                btnDangKy.Visible = false;
+                btnHopDong.Visible = false;
+                //btnTaiKhoan.Visible = false;
+                //btnDanhMuc.Visible = false;
+                btnDichVu.Visible = false;
+                //btnLoaiTaiKhoan.Visible = false;
+                //btnThongKe.Visible = false;
             }
         }
 
         private void btnLoaiTaiKhoan_Click(object sender, EventArgs e)
         {
+            ClearAllActiveButton();
+            btnLoaiTaiKhoan.BackColor = Color.FromArgb(255, 128, 0);
             LoaiTaiKhoanUC f = new LoaiTaiKhoanUC();
             pnContent.Controls.Clear();
             pnContent.Controls.Add(f);
@@ -103,6 +135,8 @@ namespace CustomerManagementViettelApp
 
         private void btnDanhMuc_Click(object sender, EventArgs e)
         {
+            ClearAllActiveButton();
+            btnDanhMuc.BackColor = Color.FromArgb(255, 128, 0);
             DanhMucUC f = new DanhMucUC();
             pnContent.Controls.Clear();
             pnContent.Controls.Add(f);
@@ -111,6 +145,8 @@ namespace CustomerManagementViettelApp
 
         private void btnThongKe_Click(object sender, EventArgs e)
         {
+            ClearAllActiveButton();
+            btnThongKe.BackColor = Color.FromArgb(255, 128, 0);
             ThongKeUC f = new ThongKeUC();
             pnContent.Controls.Clear();
             pnContent.Controls.Add(f);
@@ -119,6 +155,8 @@ namespace CustomerManagementViettelApp
 
         private void btnTaiKhoan_Click(object sender, EventArgs e)
         {
+            ClearAllActiveButton();
+            btnTaiKhoan.BackColor = Color.FromArgb(255, 128, 0);
             TaiKhoanUC f = new TaiKhoanUC();
             pnContent.Controls.Clear();
             pnContent.Controls.Add(f);
@@ -127,15 +165,9 @@ namespace CustomerManagementViettelApp
 
         private void btnDichVu_Click(object sender, EventArgs e)
         {
+            ClearAllActiveButton();
+            btnDichVu.BackColor = Color.FromArgb(255, 128, 0);
             DichVuUC f = new DichVuUC();
-            pnContent.Controls.Clear();
-            pnContent.Controls.Add(f);
-            f.Show();
-        }
-
-        private void btnMayTinh_Click(object sender, EventArgs e)
-        {
-            LichSuUC f = new LichSuUC();
             pnContent.Controls.Clear();
             pnContent.Controls.Add(f);
             f.Show();
@@ -143,6 +175,8 @@ namespace CustomerManagementViettelApp
 
         private void btnDangKy_Click(object sender, EventArgs e)
         {
+            ClearAllActiveButton();
+            btnDangKy.BackColor = Color.FromArgb(255, 128, 0);
             DangKyUC f = new DangKyUC();
             pnContent.Controls.Clear();
             pnContent.Controls.Add(f);
@@ -160,7 +194,19 @@ namespace CustomerManagementViettelApp
 
         private void btnThongTinCaNhan_Click(object sender, EventArgs e)
         {
+            ClearAllActiveButton();
+            btnThongTinCaNhan.BackColor = Color.FromArgb(255, 128, 0);
             pn f = new pn();
+            pnContent.Controls.Clear();
+            pnContent.Controls.Add(f);
+            f.Show();
+        }
+
+        private void btnHopDong_Click(object sender, EventArgs e)
+        {
+            ClearAllActiveButton();
+            btnHopDong.BackColor = Color.FromArgb(255, 128, 0);
+            DanhSachHopDongUC f = new DanhSachHopDongUC();
             pnContent.Controls.Clear();
             pnContent.Controls.Add(f);
             f.Show();
@@ -168,7 +214,9 @@ namespace CustomerManagementViettelApp
 
         public void Trigger()
         {
-            DKDichVuUC f = new DKDichVuUC(Session.TaiKhoanQLDV);
+            ClearAllActiveButton();
+            btnDangKy.BackColor = Color.FromArgb(255, 128, 0);
+            DangKyUC f = new DangKyUC();
             pnContent.Controls.Clear();
             pnContent.Controls.Add(f);
             f.Show();
