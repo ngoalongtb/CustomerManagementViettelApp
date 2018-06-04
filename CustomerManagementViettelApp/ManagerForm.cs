@@ -113,13 +113,13 @@ namespace CustomerManagementViettelApp
 
             if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Staff)
             {
-                btnDangKy.Visible = false;
-                btnHopDong.Visible = false;
-                //btnTaiKhoan.Visible = false;
-                //btnDanhMuc.Visible = false;
-                btnDichVu.Visible = false;
-                //btnLoaiTaiKhoan.Visible = false;
-                //btnThongKe.Visible = false;
+                //btnDangKy.Visible = false;
+                //btnHopDong.Visible = false;
+                btnTaiKhoan.Visible = false;
+                btnDanhMuc.Visible = false;
+                //btnDichVu.Visible = false;
+                btnLoaiTaiKhoan.Visible = false;
+                btnThongKe.Visible = false;
             }
         }
 
@@ -216,7 +216,26 @@ namespace CustomerManagementViettelApp
         {
             ClearAllActiveButton();
             btnDangKy.BackColor = Color.FromArgb(255, 128, 0);
-            DangKyUC f = new DangKyUC();
+            ChiTietHopDongUC f = new ChiTietHopDongUC();
+            pnContent.Controls.Clear();
+            pnContent.Controls.Add(f);
+            f.Show();
+        }
+
+        public void Trigger(string screen)
+        {
+            Control f = null;
+            switch(screen)
+            {
+                case Commons.ThongKeTheoDichVu:
+                    f = new ThongKeTheoDichVuUC();
+                    break;
+                case Commons.ThongKeTheoNhanVien:
+                    f = new ThongKeTheoTaiKhoanUC();
+                    break;
+                default: break;
+            }
+
             pnContent.Controls.Clear();
             pnContent.Controls.Add(f);
             f.Show();

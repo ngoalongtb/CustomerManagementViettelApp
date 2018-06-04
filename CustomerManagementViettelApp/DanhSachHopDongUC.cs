@@ -37,15 +37,20 @@ namespace CustomerManagementViettelApp
 
         public void LoadDtgv()
         {
-            bds.DataSource = db.HopDongs.Select(x => new { x.MaHopDong, x.HoTen, x.ChucVu, x.NgaySinh, x.NgayTao, x }).ToList();
+            if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Manager)
+            {
+                bds.DataSource = db.HopDongs.Select(x => new { x.MaHopDong, x.HoTen, x.NgayTao, x }).ToList();
+            }
+            else
+            {
+                bds.DataSource = Session.LoginAccount.HopDongs.Select(x => new { x.MaHopDong, x.HoTen, x.NgayTao, x }).ToList();
+            }
         }
 
         public void ChangHeader()
         {
             dtgv.Columns["MaHopDong"].HeaderText = "Mã hợp đồng";
             dtgv.Columns["HoTen"].HeaderText = "Họ tên";
-            dtgv.Columns["ChucVu"].HeaderText = "Chức vụ";
-            dtgv.Columns["NgaySinh"].HeaderText = "Ngày sinh";
             dtgv.Columns["NgayTao"].HeaderText = "Ngày tạo";
         }
         public void LoadDataBinding()
@@ -114,7 +119,21 @@ namespace CustomerManagementViettelApp
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            bds.DataSource = db.HopDongs.Select(x => new { x.MaHopDong, x.HoTen, x.ChucVu, x.NgaySinh, x.NgayTao, x }).Where(x => x.MaHopDong.ToString().Contains(txtTimKiem.Text) || x.HoTen.Contains(txtTimKiem.Text)).ToList();
+            if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Manager)
+            {
+                bds.DataSource = db.HopDongs.Select(x => new { x.MaHopDong, x.HoTen, x.ChucVu, x.NgaySinh, x.NgayTao, x }).Where(x => x.MaHopDong.ToString().Contains(txtTimKiem.Text) || x.HoTen.Contains(txtTimKiem.Text)).ToList();
+            }
+            else
+            {
+                bds.DataSource = Session.LoginAccount.HopDongs.Select(x => new { x.MaHopDong, x.HoTen, x.ChucVu, x.NgaySinh, x.NgayTao, x }).Where(x => x.MaHopDong.ToString().Contains(txtTimKiem.Text) || x.HoTen.Contains(txtTimKiem.Text)).ToList();
+            }
+        }
+
+        private void btnChiTiet_Click(object sender, EventArgs e)
+        {
+            HopDong hopDong = db.HopDongs.Find(int.Parse(lblMaHopDong.Text));
+            Session.HopDong = hopDong;
+            AppState.ManagerForm.Trigger();
         }
     }
 }

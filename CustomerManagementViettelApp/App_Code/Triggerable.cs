@@ -9,5 +9,7 @@ namespace CustomerManagementViettelApp.App_Code
     public interface Triggerable
     {
         void Trigger();
+
+        void Trigger(string screen);
     }
 }

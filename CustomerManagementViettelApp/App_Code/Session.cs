@@ -11,5 +11,7 @@ namespace CustomerManagementViettelApp.App_Code
     {
         public static TaiKhoan LoginAccount { get; set; }
         public static TaiKhoan TaiKhoanQLDV { get; set; }
+
+        public static HopDong HopDong { get; set; }
     }
 }
