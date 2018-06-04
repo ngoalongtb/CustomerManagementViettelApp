@@ -20,105 +20,20 @@ namespace CustomerManagementViettelApp
         {
             InitializeComponent();
         }
-        private AppDB db = new AppDB();
-        private BindingSource bds = new BindingSource();
 
-        private void ThongKeUC_Load(object sender, EventArgs e)
+        private void btnThongKeNhanVien_Click(object sender, EventArgs e)
         {
-            InitParameters();
-            LoadDtgv();
-            CalculateMoney();
-            dtgv.DataSource = bds;
-            ChangHeader();
-            LoadDataBinding();
-            HideColumns();
+            AppState.ManagerForm.Trigger(Commons.ThongKeTheoNhanVien);
         }
 
-        public void InitParameters()
+        private void btnThongKeDichVu_Click(object sender, EventArgs e)
         {
-            dtpkFrom.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            dtpkTo.Value = DateTime.Now;
+            AppState.ManagerForm.Trigger(Commons.ThongKeTheoDichVu);
         }
 
-        public void LoadDtgv()
+        private void btnThongKeKhachHang_Click(object sender, EventArgs e)
         {
-            bds.DataSource = db.ChiTietHopDongs.Where(u => u.HopDong.NgayTao >= dtpkFrom.Value && u.HopDong.NgayTao <= dtpkTo.Value).GroupBy(u => u.DichVu).Select(x => new { x.Key.MaDichVu, TenDichVu=x.Key.TenDichVu, Count = x.Count() }).ToList();
-        }
 
-        public void CalculateMoney()
-        {
-            lblTongTien.Text = db.ChiTietHopDongs.Where(u => u.HopDong.NgayTao >= dtpkFrom.Value && u.HopDong.NgayTao <= dtpkTo.Value).Sum(x => x.DichVu.Gia).ToString();
-        }
-
-        public void ChangHeader()
-        {
-            dtgv.Columns["MaDichVu"].HeaderText = "Mã dịch vụ";
-            dtgv.Columns["TenDichVu"].HeaderText = "Tên dịch vụ";
-            dtgv.Columns["Count"].HeaderText = "Số lượt đăng ký";
-        }
-
-        public void LoadDataBinding()
-        {
-            //lblMaDichVu.DataBindings.Add("Text", dtgv.DataSource, "x.DichVu.MaDichVu", true, DataSourceUpdateMode.Never);
-            //lblTenDichVu.DataBindings.Add("Text", dtgv.DataSource, "x.DichVu.TenDichVu", true, DataSourceUpdateMode.Never);
-            //lblGia.DataBindings.Add("Text", dtgv.DataSource, "x.DichVu.Gia", true, DataSourceUpdateMode.Never);
-            //lblKhuyenMai.DataBindings.Add("Text", dtgv.DataSource, "x.DichVu.KhuyenMai", true, DataSourceUpdateMode.Never);
-            //lblMoTa.DataBindings.Add("Text", dtgv.DataSource, "x.DichVu.MoTa", true, DataSourceUpdateMode.Never);
-        }
-
-        public void HideColumns()
-        {
-            //dtgv.Columns["x"].Visible = false;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            LoadDtgv();
-            CalculateMoney();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            
-
-        }
-
-        private void btnShowReport_Click(object sender, EventArgs e)
-        {
-            ReportModel reportModel = new ReportModel();
-            reportModel.Staff = Session.LoginAccount.TenTaiKhoan;
-            reportModel.FromDate = dtpkFrom.Value.ToString();
-            reportModel.ToDate = dtpkTo.Value.ToString();
-            reportModel.Date = DateTime.Now.ToString();
-
-           
-
-            List<ReportItem> list = new List<ReportItem>();
-
-
-            var temp = db.ChiTietHopDongs.Where(u => u.HopDong.NgayTao >= dtpkFrom.Value && u.HopDong.NgayTao <= dtpkTo.Value).GroupBy(u => u.DichVu).Select(x => new { x.Key.MaDichVu, TenDichVu = x.Key.TenDichVu, Count = x.Count() }).ToList();
-
-            foreach (var item in temp)
-            {
-                ReportItem reportItem = new ReportItem();
-                reportItem.MaDichVu = item.MaDichVu.ToString();
-                reportItem.SoLuotDangKy = item.Count.ToString();
-                reportItem.TenDichVu = item.TenDichVu;
-                list.Add(reportItem);
-            }
-
-            double total = 0;
-            var temp2 = db.ChiTietHopDongs.Where(u => u.HopDong.NgayTao >= dtpkFrom.Value && u.HopDong.NgayTao <= dtpkTo.Value).ToList();
-            foreach (var item in temp2)
-            {
-                total += item.DichVu.Gia.Value;
-            }
-
-            reportModel.Total = total.ToString();
-            XtraReport1 report = new XtraReport1(reportModel);
-            report.DataSource = list;
-            ReportPrintTool printTool = new ReportPrintTool(report);
-            printTool.ShowPreview();
         }
     }
 }

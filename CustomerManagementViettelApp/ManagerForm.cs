@@ -218,7 +218,26 @@ namespace CustomerManagementViettelApp
         {
             ClearAllActiveButton();
             btnDangKy.BackColor = Color.FromArgb(255, 128, 0);
-            DangKyUC f = new DangKyUC();
+            ChiTietHopDongUC f = new ChiTietHopDongUC();
+            pnContent.Controls.Clear();
+            pnContent.Controls.Add(f);
+            f.Show();
+        }
+
+        public void Trigger(string screen)
+        {
+            Control f = null;
+            switch(screen)
+            {
+                case Commons.ThongKeTheoDichVu:
+                    f = new ThongKeTheoDichVuUC();
+                    break;
+                case Commons.ThongKeTheoNhanVien:
+                    f = new ThongKeTheoTaiKhoanUC();
+                    break;
+                default: break;
+            }
+
             pnContent.Controls.Clear();
             pnContent.Controls.Add(f);
             f.Show();

@@ -13,7 +13,7 @@ using CustomerManagementViettelApp.App_Code;
 
 namespace CustomerManagementViettelApp
 {
-    public partial class DangKyUC : UserControl, Triggerable
+    public partial class DangKyUC : UserControl
     {
         private AppDB db = new AppDB();
         private BindingSource bds = new BindingSource();
@@ -83,6 +83,8 @@ namespace CustomerManagementViettelApp
                 hopDong.ChiTietHopDongs = chiTietHopDongs;
                 db.HopDongs.Add(hopDong);
                 db.SaveChanges();
+
+                MessageBox.Show("Đăng ký thành công!!");
             }
             catch (Exception)
             {

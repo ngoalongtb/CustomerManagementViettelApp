@@ -84,7 +84,14 @@
     <Compile Include="App_Code\ReportItem.cs" />
     <Compile Include="App_Code\ReportModel.cs" />
     <Compile Include="App_Code\Session.cs" />
+    <Compile Include="App_Code\ThongKeTheoNhanVienReportItem.cs" />
     <Compile Include="App_Code\Triggerable.cs" />
+    <Compile Include="ChiTietHopDongUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChiTietHopDongUC.Designer.cs">
+      <DependentUpon>ChiTietHopDongUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\DichVuComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -180,17 +187,47 @@
     <Compile Include="Report\HopDongReport.Designer.cs">
       <DependentUpon>HopDongReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Report\XtraReport1.cs">
+    <Compile Include="Report\ThongKeTheoKhachHangReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Report\XtraReport1.Designer.cs">
-      <DependentUpon>XtraReport1.cs</DependentUpon>
+    <Compile Include="Report\ThongKeTheoKhachHangReport.Designer.cs">
+      <DependentUpon>ThongKeTheoKhachHangReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ThongKeTheoNhanVienReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ThongKeTheoNhanVienReport.Designer.cs">
+      <DependentUpon>ThongKeTheoNhanVienReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ThongKeTheoDichVuReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ThongKeTheoDichVuReport.Designer.cs">
+      <DependentUpon>ThongKeTheoDichVuReport.cs</DependentUpon>
     </Compile>
     <Compile Include="TaiKhoanUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="TaiKhoanUC.Designer.cs">
       <DependentUpon>TaiKhoanUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThongKeTheoDichVuUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ThongKeTheoDichVuUC.Designer.cs">
+      <DependentUpon>ThongKeTheoDichVuUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThongKeTheoKhachHangUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ThongKeTheoKhachHangUC.Designer.cs">
+      <DependentUpon>ThongKeTheoKhachHangUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThongKeTheoTaiKhoanUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ThongKeTheoTaiKhoanUC.Designer.cs">
+      <DependentUpon>ThongKeTheoTaiKhoanUC.cs</DependentUpon>
     </Compile>
     <Compile Include="ThongKeUC.cs">
       <SubType>UserControl</SubType>
@@ -204,6 +241,9 @@
     <Compile Include="ThongTinCaNhanUC.Designer.cs">
       <DependentUpon>ThongTinCaNhanUC.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ChiTietHopDongUC.resx">
+      <DependentUpon>ChiTietHopDongUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\DichVuComponent.resx">
       <DependentUpon>DichVuComponent.cs</DependentUpon>
     </EmbeddedResource>
@@ -242,11 +282,26 @@
     <EmbeddedResource Include="Report\HopDongReport.resx">
       <DependentUpon>HopDongReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\XtraReport1.resx">
-      <DependentUpon>XtraReport1.cs</DependentUpon>
+    <EmbeddedResource Include="Report\ThongKeTheoKhachHangReport.resx">
+      <DependentUpon>ThongKeTheoKhachHangReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ThongKeTheoNhanVienReport.resx">
+      <DependentUpon>ThongKeTheoNhanVienReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ThongKeTheoDichVuReport.resx">
+      <DependentUpon>ThongKeTheoDichVuReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TaiKhoanUC.resx">
       <DependentUpon>TaiKhoanUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongKeTheoDichVuUC.resx">
+      <DependentUpon>ThongKeTheoDichVuUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongKeTheoKhachHangUC.resx">
+      <DependentUpon>ThongKeTheoKhachHangUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongKeTheoTaiKhoanUC.resx">
+      <DependentUpon>ThongKeTheoTaiKhoanUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ThongKeUC.resx">
       <DependentUpon>ThongKeUC.cs</DependentUpon>
@@ -264,6 +319,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\CustomerManagementViettelApp.App_Code.ReportChiTietHopDongItem.datasource" />
     <None Include="Properties\DataSources\CustomerManagementViettelApp.App_Code.ReportItem.datasource" />
+    <None Include="Properties\DataSources\CustomerManagementViettelApp.App_Code.ThongKeTheoNhanVienReportItem.datasource" />
     <None Include="Properties\DataSources\CustomerManagementViettelApp.EF.DichVu.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
