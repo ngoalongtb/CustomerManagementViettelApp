@@ -97,7 +97,9 @@ namespace CustomerManagementViettelApp
         {
             if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Manager)
             {
-                
+                btnDangKy.Visible = false;
+                btnTaiKhoan.Visible = false;
+                btnLoaiTaiKhoan.Visible = false;
             }
 
             if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Admin)
@@ -113,13 +115,13 @@ namespace CustomerManagementViettelApp
 
             if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Staff)
             {
-                btnDangKy.Visible = false;
-                btnHopDong.Visible = false;
-                //btnTaiKhoan.Visible = false;
-                //btnDanhMuc.Visible = false;
+                //btnDangKy.Visible = false;
+                //btnHopDong.Visible = false;
+                btnTaiKhoan.Visible = false;
+                btnDanhMuc.Visible = false;
                 btnDichVu.Visible = false;
-                //btnLoaiTaiKhoan.Visible = false;
-                //btnThongKe.Visible = false;
+                btnLoaiTaiKhoan.Visible = false;
+                btnThongKe.Visible = false;
             }
         }
 

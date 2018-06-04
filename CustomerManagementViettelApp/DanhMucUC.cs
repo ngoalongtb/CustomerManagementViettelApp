@@ -91,10 +91,11 @@ namespace CustomerManagementViettelApp
 
             if (confirmResult == DialogResult.Yes)
             {
-                DanhMuc category = db.DanhMucs.Find(txtId.Text);
+                
 
                 try
                 {
+                    DanhMuc category = db.DanhMucs.Find(int.Parse(txtId.Text));
                     db.DanhMucs.Remove(category);
                     db.SaveChanges();
                     MessageBox.Show("Xóa thành công");
