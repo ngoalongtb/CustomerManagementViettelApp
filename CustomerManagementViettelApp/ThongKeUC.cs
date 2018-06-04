@@ -30,5 +30,10 @@ namespace CustomerManagementViettelApp
         {
             AppState.ManagerForm.Trigger(Commons.ThongKeTheoDichVu);
         }
+
+        private void btnThongKeKhachHang_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

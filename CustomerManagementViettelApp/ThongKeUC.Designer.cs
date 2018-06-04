@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnThongKeNhanVien = new System.Windows.Forms.Button();
             this.btnThongKeDichVu = new System.Windows.Forms.Button();
+            this.btnThongKeKhachHang = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -64,7 +65,7 @@
             this.btnThongKeDichVu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThongKeDichVu.Font = new System.Drawing.Font("Calibri", 24F);
             this.btnThongKeDichVu.ForeColor = System.Drawing.Color.White;
-            this.btnThongKeDichVu.Location = new System.Drawing.Point(417, 169);
+            this.btnThongKeDichVu.Location = new System.Drawing.Point(429, 169);
             this.btnThongKeDichVu.Name = "btnThongKeDichVu";
             this.btnThongKeDichVu.Size = new System.Drawing.Size(280, 107);
             this.btnThongKeDichVu.TabIndex = 76;
@@ -72,11 +73,26 @@
             this.btnThongKeDichVu.UseVisualStyleBackColor = false;
             this.btnThongKeDichVu.Click += new System.EventHandler(this.btnThongKeDichVu_Click);
             // 
+            // btnThongKeKhachHang
+            // 
+            this.btnThongKeKhachHang.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnThongKeKhachHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThongKeKhachHang.Font = new System.Drawing.Font("Calibri", 24F);
+            this.btnThongKeKhachHang.ForeColor = System.Drawing.Color.White;
+            this.btnThongKeKhachHang.Location = new System.Drawing.Point(240, 313);
+            this.btnThongKeKhachHang.Name = "btnThongKeKhachHang";
+            this.btnThongKeKhachHang.Size = new System.Drawing.Size(308, 107);
+            this.btnThongKeKhachHang.TabIndex = 76;
+            this.btnThongKeKhachHang.Text = "Thống kê khách hàng";
+            this.btnThongKeKhachHang.UseVisualStyleBackColor = false;
+            this.btnThongKeKhachHang.Click += new System.EventHandler(this.btnThongKeKhachHang_Click);
+            // 
             // ThongKeUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.Controls.Add(this.btnThongKeKhachHang);
             this.Controls.Add(this.btnThongKeDichVu);
             this.Controls.Add(this.btnThongKeNhanVien);
             this.Controls.Add(this.label1);
@@ -94,5 +110,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnThongKeNhanVien;
         private System.Windows.Forms.Button btnThongKeDichVu;
+        private System.Windows.Forms.Button btnThongKeKhachHang;
     }
 }

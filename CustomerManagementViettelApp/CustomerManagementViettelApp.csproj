@@ -187,6 +187,12 @@
     <Compile Include="Report\HopDongReport.Designer.cs">
       <DependentUpon>HopDongReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\ThongKeTheoKhachHangReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ThongKeTheoKhachHangReport.Designer.cs">
+      <DependentUpon>ThongKeTheoKhachHangReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\ThongKeTheoNhanVienReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -210,6 +216,12 @@
     </Compile>
     <Compile Include="ThongKeTheoDichVuUC.Designer.cs">
       <DependentUpon>ThongKeTheoDichVuUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThongKeTheoKhachHangUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ThongKeTheoKhachHangUC.Designer.cs">
+      <DependentUpon>ThongKeTheoKhachHangUC.cs</DependentUpon>
     </Compile>
     <Compile Include="ThongKeTheoTaiKhoanUC.cs">
       <SubType>UserControl</SubType>
@@ -270,6 +282,9 @@
     <EmbeddedResource Include="Report\HopDongReport.resx">
       <DependentUpon>HopDongReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\ThongKeTheoKhachHangReport.resx">
+      <DependentUpon>ThongKeTheoKhachHangReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\ThongKeTheoNhanVienReport.resx">
       <DependentUpon>ThongKeTheoNhanVienReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -281,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ThongKeTheoDichVuUC.resx">
       <DependentUpon>ThongKeTheoDichVuUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongKeTheoKhachHangUC.resx">
+      <DependentUpon>ThongKeTheoKhachHangUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ThongKeTheoTaiKhoanUC.resx">
       <DependentUpon>ThongKeTheoTaiKhoanUC.cs</DependentUpon>

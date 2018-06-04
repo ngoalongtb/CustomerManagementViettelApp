@@ -49,18 +49,6 @@ namespace CustomerManagementViettelApp
             dtgv.Columns["Count"].HeaderText = "Số lượt đăng ký";
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            LoadDtgv();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
         private void btnShowReport_Click(object sender, EventArgs e)
         {
             ReportModel reportModel = new ReportModel();
@@ -91,6 +79,9 @@ namespace CustomerManagementViettelApp
             printTool.ShowPreview();
         }
 
-        
+        private void btnThongKe_Click(object sender, EventArgs e)
+        {
+            LoadDtgv();
+        }
     }
 }

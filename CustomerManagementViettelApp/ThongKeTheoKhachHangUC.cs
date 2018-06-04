@@ -14,17 +14,16 @@ using DevExpress.XtraReports.UI;
 
 namespace CustomerManagementViettelApp
 {
-    public partial class ThongKeTheoTaiKhoanUC : UserControl
+    public partial class ThongKeTheoKhachHangUC : UserControl
     {
-        public ThongKeTheoTaiKhoanUC()
+        private AppDB db = new AppDB();
+        private BindingSource bds = new BindingSource();
+        public ThongKeTheoKhachHangUC()
         {
             InitializeComponent();
         }
 
-        private AppDB db = new AppDB();
-        private BindingSource bds = new BindingSource();
-
-        private void ThongKeTheoTaiKhoanUC_Load(object sender, EventArgs e)
+        private void ThongKeTheoKhachHangUC_Load(object sender, EventArgs e)
         {
             InitParameters();
             LoadDtgv();
@@ -40,26 +39,14 @@ namespace CustomerManagementViettelApp
 
         public void LoadDtgv()
         {
-            bds.DataSource = db.HopDongs.Where(u => u.NgayTao >= dtpkFrom.Value && u.NgayTao <= dtpkTo.Value).GroupBy(u => u.TaiKhoan).Select(x => new { x.Key.TenTaiKhoan, TenHienThi = x.Key.TenHienThi, Count = x.Count() }).OrderByDescending( x=> x.Count).ToList();
+            bds.DataSource = db.ChiTietHopDongs.Where(u => u.HopDong.NgayTao >= dtpkFrom.Value && u.HopDong.NgayTao <= dtpkTo.Value).GroupBy(u => u.DichVu).Select(x => new { x.Key.MaDichVu, TenDichVu = x.Key.TenDichVu, Count = x.Count() }).OrderByDescending(x => x.Count).ToList();
         }
 
         public void ChangHeader()
         {
-            dtgv.Columns["TenTaiKhoan"].HeaderText = "Tên tài khoản";
-            dtgv.Columns["TenHienThi"].HeaderText = "Tên hiển thị";
-            dtgv.Columns["Count"].HeaderText = "Số hợp đồng";
-        }
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            LoadDtgv();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-
+            dtgv.Columns["MaDichVu"].HeaderText = "Mã dịch vụ";
+            dtgv.Columns["TenDichVu"].HeaderText = "Tên dịch vụ";
+            dtgv.Columns["Count"].HeaderText = "Số lượt đăng ký";
         }
 
         private void btnShowReport_Click(object sender, EventArgs e)
@@ -72,21 +59,21 @@ namespace CustomerManagementViettelApp
 
 
 
-            List<ThongKeTheoNhanVienReportItem> list = new List<ThongKeTheoNhanVienReportItem>();
+            List<ReportItem> list = new List<ReportItem>();
 
 
-            var temp = db.HopDongs.Where(u => u.NgayTao >= dtpkFrom.Value && u.NgayTao <= dtpkTo.Value).GroupBy(u => u.TaiKhoan).Select(x => new { x.Key.TenTaiKhoan, TenHienThi = x.Key.TenHienThi, Count = x.Count() }).OrderByDescending(x => x.Count).ToList();
+            var temp = db.ChiTietHopDongs.Where(u => u.HopDong.NgayTao >= dtpkFrom.Value && u.HopDong.NgayTao <= dtpkTo.Value).GroupBy(u => u.DichVu).Select(x => new { x.Key.MaDichVu, TenDichVu = x.Key.TenDichVu, Count = x.Count() }).OrderByDescending(x => x.Count).ToList();
 
             foreach (var item in temp)
             {
-                ThongKeTheoNhanVienReportItem reportItem = new ThongKeTheoNhanVienReportItem();
-                reportItem.TenTaiKhoan = item.TenTaiKhoan;
-                reportItem.TenNhanVien = item.TenHienThi;
-                reportItem.SoHopDong = item.Count;
+                ReportItem reportItem = new ReportItem();
+                reportItem.MaDichVu = item.MaDichVu.ToString();
+                reportItem.SoLuotDangKy = item.Count.ToString();
+                reportItem.TenDichVu = item.TenDichVu;
                 list.Add(reportItem);
             }
 
-            ThongKeTheoNhanVienReport report = new ThongKeTheoNhanVienReport(reportModel);
+            ThongKeTheoKhachHangReport report = new ThongKeTheoKhachHangReport(reportModel);
             report.DataSource = list;
             ReportPrintTool printTool = new ReportPrintTool(report);
             printTool.ShowPreview();
@@ -96,5 +83,7 @@ namespace CustomerManagementViettelApp
         {
             LoadDtgv();
         }
+
+        
     }
 }
