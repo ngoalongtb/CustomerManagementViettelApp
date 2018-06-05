@@ -53,9 +53,9 @@ namespace CustomerManagementViettelApp
         {
             ReportModel reportModel = new ReportModel();
             reportModel.Staff = Session.LoginAccount.TenTaiKhoan;
-            reportModel.FromDate = dtpkFrom.Value.ToString();
-            reportModel.ToDate = dtpkTo.Value.ToString();
-            reportModel.Date = DateTime.Now.ToString();
+            reportModel.FromDate = dtpkFrom.Value.ToShortDateString();
+            reportModel.ToDate = dtpkTo.Value.ToShortDateString();
+            reportModel.Date = DateTime.Now.ToShortDateString();
 
 
 

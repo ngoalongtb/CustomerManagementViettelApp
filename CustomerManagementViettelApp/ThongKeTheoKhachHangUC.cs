@@ -39,13 +39,13 @@ namespace CustomerManagementViettelApp
 
         public void LoadDtgv()
         {
-            bds.DataSource = db.ChiTietHopDongs.Where(u => u.HopDong.NgayTao >= dtpkFrom.Value && u.HopDong.NgayTao <= dtpkTo.Value).GroupBy(u => u.DichVu).Select(x => new { x.Key.MaDichVu, TenDichVu = x.Key.TenDichVu, Count = x.Count() }).OrderByDescending(x => x.Count).ToList();
+            bds.DataSource = db.ChiTietHopDongs.Where(u => u.HopDong.NgayTao >= dtpkFrom.Value && u.HopDong.NgayTao <= dtpkTo.Value).GroupBy(u => new { u.HopDong.HoTen, u.HopDong.Cmtnd }).Select(x => new { x.Key.HoTen, x.Key.Cmtnd, Count = x.Count() }).OrderByDescending(x => x.Count).Take(5).ToList();
         }
 
         public void ChangHeader()
         {
-            dtgv.Columns["MaDichVu"].HeaderText = "Mã dịch vụ";
-            dtgv.Columns["TenDichVu"].HeaderText = "Tên dịch vụ";
+            dtgv.Columns["HoTen"].HeaderText = "Tên khách hàng";
+            dtgv.Columns["Cmtnd"].HeaderText = "CMTND";
             dtgv.Columns["Count"].HeaderText = "Số lượt đăng ký";
         }
 
@@ -53,23 +53,23 @@ namespace CustomerManagementViettelApp
         {
             ReportModel reportModel = new ReportModel();
             reportModel.Staff = Session.LoginAccount.TenTaiKhoan;
-            reportModel.FromDate = dtpkFrom.Value.ToString();
-            reportModel.ToDate = dtpkTo.Value.ToString();
-            reportModel.Date = DateTime.Now.ToString();
+            reportModel.FromDate = dtpkFrom.Value.ToShortDateString();
+            reportModel.ToDate = dtpkTo.Value.ToShortDateString();
+            reportModel.Date = DateTime.Now.ToShortDateString();
 
 
 
-            List<ReportItem> list = new List<ReportItem>();
+            List<ThongKeTheoKhachHangReportItem> list = new List<ThongKeTheoKhachHangReportItem>();
 
 
-            var temp = db.ChiTietHopDongs.Where(u => u.HopDong.NgayTao >= dtpkFrom.Value && u.HopDong.NgayTao <= dtpkTo.Value).GroupBy(u => u.DichVu).Select(x => new { x.Key.MaDichVu, TenDichVu = x.Key.TenDichVu, Count = x.Count() }).OrderByDescending(x => x.Count).ToList();
+            var temp = db.ChiTietHopDongs.Where(u => u.HopDong.NgayTao >= dtpkFrom.Value && u.HopDong.NgayTao <= dtpkTo.Value).GroupBy(u => new { u.HopDong.HoTen, u.HopDong.Cmtnd }).Select(x => new { x.Key.HoTen, x.Key.Cmtnd, Count = x.Count() }).OrderByDescending(x => x.Count).Take(5).ToList();
 
             foreach (var item in temp)
             {
-                ReportItem reportItem = new ReportItem();
-                reportItem.MaDichVu = item.MaDichVu.ToString();
-                reportItem.SoLuotDangKy = item.Count.ToString();
-                reportItem.TenDichVu = item.TenDichVu;
+                ThongKeTheoKhachHangReportItem reportItem = new ThongKeTheoKhachHangReportItem();
+                reportItem.TenKhachHang = item.HoTen.ToString();
+                reportItem.CMTND = item.Cmtnd.ToString();
+                reportItem.SoHopDong = item.Count;
                 list.Add(reportItem);
             }
 

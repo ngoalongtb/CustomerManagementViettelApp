@@ -26,10 +26,10 @@ namespace CustomerManagementViettelApp.Report
 
         public void Load()
         {
-            //lblFromDate.Text = model.FromDate;
-            //lblToDate.Text = model.ToDate;
-            //lblDate.Text = model.Date;
-            //lblStaff.Text = model.Staff;
+            lblFromDate.Text = model.FromDate;
+            lblToDate.Text = model.ToDate;
+            lblDate.Text = model.Date;
+            lblStaff.Text = model.Staff;
         }
 
     }

@@ -235,6 +235,9 @@ namespace CustomerManagementViettelApp
                 case Commons.ThongKeTheoNhanVien:
                     f = new ThongKeTheoTaiKhoanUC();
                     break;
+                case Commons.ThongKeTheoKhachHang:
+                    f = new ThongKeTheoKhachHangUC();
+                    break;
                 default: break;
             }
 

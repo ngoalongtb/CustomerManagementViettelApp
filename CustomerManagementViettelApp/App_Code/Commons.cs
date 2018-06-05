@@ -15,5 +15,6 @@ namespace CustomerManagementViettelApp.App_Code
         public const string DangKy = "DangKy";
         public const string ThongKeTheoDichVu = "ThongKeTheoDichVu";
         public const string ThongKeTheoNhanVien = "ThongKeTheoNhanVien";
+        public const string ThongKeTheoKhachHang = "ThongKeTheoKhachHang";
     }
 }
