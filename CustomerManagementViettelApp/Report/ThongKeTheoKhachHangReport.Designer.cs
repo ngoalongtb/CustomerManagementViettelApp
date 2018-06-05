@@ -32,10 +32,10 @@
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
-            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.lblAge = new DevExpress.XtraReports.UI.XRLabel();
             this.lblName = new DevExpress.XtraReports.UI.XRLabel();
             this.lblHello = new DevExpress.XtraReports.UI.XRLabel();
+            this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.lblFromDate = new DevExpress.XtraReports.UI.XRLabel();
@@ -81,21 +81,6 @@
             this.ReportHeader.HeightF = 100F;
             this.ReportHeader.Name = "ReportHeader";
             // 
-            // PageHeader
-            // 
-            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel5,
-            this.xrLabel6,
-            this.lblFromDate,
-            this.xrLabel7,
-            this.lblToDate,
-            this.xrLabel8,
-            this.lblStaff,
-            this.lblDate,
-            this.xrLabel9});
-            this.PageHeader.HeightF = 124.0416F;
-            this.PageHeader.Name = "PageHeader";
-            // 
             // lblAge
             // 
             this.lblAge.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -128,6 +113,21 @@
             this.lblHello.StylePriority.UseFont = false;
             this.lblHello.Text = "54 Triều Khúc, Thanh Xuân, Hà Nội";
             // 
+            // PageHeader
+            // 
+            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel5,
+            this.xrLabel6,
+            this.lblFromDate,
+            this.xrLabel7,
+            this.lblToDate,
+            this.xrLabel8,
+            this.lblStaff,
+            this.lblDate,
+            this.xrLabel9});
+            this.PageHeader.HeightF = 124.0416F;
+            this.PageHeader.Name = "PageHeader";
+            // 
             // xrLabel5
             // 
             this.xrLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(132)))), ((int)(((byte)(111)))));
@@ -137,13 +137,13 @@
             this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(344.7917F, 45.91664F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(397.9167F, 45.91664F);
             this.xrLabel5.StylePriority.UseBackColor = false;
             this.xrLabel5.StylePriority.UseBorderColor = false;
             this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.StylePriority.UseForeColor = false;
             this.xrLabel5.StylePriority.UseTextAlignment = false;
-            this.xrLabel5.Text = "   Thống kê theo dịch vụ:";
+            this.xrLabel5.Text = "   Thống kê theo khách hàng:";
             this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel6
@@ -233,7 +233,7 @@
             this.xrLabel10,
             this.xrLabel12,
             this.xrLabel13});
-            this.GroupHeader1.HeightF = 26.04167F;
+            this.GroupHeader1.HeightF = 23F;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
             // xrLabel10

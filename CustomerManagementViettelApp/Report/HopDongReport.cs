@@ -19,6 +19,7 @@ namespace CustomerManagementViettelApp.Report
             this.hopDong = hopDong;
 
             PrintDetail();
+            PrintParam();
         }
 
         public void PrintDetail()
@@ -37,6 +38,31 @@ namespace CustomerManagementViettelApp.Report
                 list.Add(item);
             }
             this.bindingSource1.DataSource = list;
+        }
+
+        public void PrintParam()
+        {
+            lblHoTen.Text = hopDong.HoTen;
+            lblTo.Text = hopDong.To;
+            lblTinh.Text = hopDong.Tinh;
+            lblNoiCap.Text = hopDong.NoiCap;
+            lblPhuongXa.Text = hopDong.Phuong;
+            lblQuanHuyen.Text = hopDong.Quan;
+            lblSoNha.Text = hopDong.SoNha;
+            lblMaSoThue.Text = hopDong.MaSoThue;
+            if(hopDong.NgaySinh != null)
+            {
+                lblNgaySinh.Text = hopDong.NgaySinh.Value.ToShortDateString();
+            }
+            if(hopDong.NgayCap != null)
+            {
+                lblNgayCap.Text = hopDong.NgayCap.Value.ToShortDateString();
+            }
+            lblTinh.Text = hopDong.Tinh;
+            if (hopDong.GioiTinh != null)
+            {
+                lblGioiTinh.Text = hopDong.GioiTinh.Value ? "Nữ" : "Nam";
+            }
         }
     }
 }

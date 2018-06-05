@@ -39,11 +39,11 @@ namespace CustomerManagementViettelApp
         {
             if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Manager)
             {
-                bds.DataSource = db.HopDongs.Select(x => new { x.MaHopDong, x.HoTen, x.NgayTao, x }).ToList();
+                bds.DataSource = db.HopDongs.Select(x => new { x.MaHopDong, x.HoTen, x.TaiKhoan.TenTaiKhoan, x.NgayTao, x }).ToList();
             }
             else
             {
-                bds.DataSource = Session.LoginAccount.HopDongs.Select(x => new { x.MaHopDong, x.HoTen, x.NgayTao, x }).ToList();
+                bds.DataSource = db.HopDongs.Where(x => x.NhanVien == Session.LoginAccount.TenTaiKhoan).Select(x => new { x.MaHopDong, x.HoTen, x.NgayTao, x }).ToList();
             }
         }
 
@@ -52,6 +52,10 @@ namespace CustomerManagementViettelApp
             dtgv.Columns["MaHopDong"].HeaderText = "Mã hợp đồng";
             dtgv.Columns["HoTen"].HeaderText = "Họ tên";
             dtgv.Columns["NgayTao"].HeaderText = "Ngày tạo";
+            if (Session.LoginAccount.LoaiTaiKhoan.TenLoaiTaiKhoan == Commons.Manager)
+            {
+                dtgv.Columns["TenTaiKhoan"].HeaderText = "Nhân viên";
+            }
         }
         public void LoadDataBinding()
         {

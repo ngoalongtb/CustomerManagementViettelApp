@@ -68,11 +68,11 @@ namespace CustomerManagementViettelApp
         }
 
         private void btnSua_Click(object sender, EventArgs e)
-        {
-            DanhMuc category = db.DanhMucs.Find(txtId.Text);
-            category.TenDanhMuc = txtTen.Text;
+        {   
             try
             {
+                DanhMuc category = db.DanhMucs.Find(int.Parse(txtId.Text));
+                category.TenDanhMuc = txtTen.Text;
                 db.SaveChanges();
                 MessageBox.Show("Cập nhật thành công");
                 LoadDtgv();
